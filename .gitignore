@@ -1,0 +1,22 @@
+# Generics
+*.lock
+*.DS_Store
+*.swp
+*.out
+Thumbs.db
+
+# NPM
+node_modules
+
+# Nodemon
+.monitor
+
+# Webstorm
+.idea
+
+# Node specific
+npm-debug.log
+/public/css/*.css
+
+
+# Bond specific
