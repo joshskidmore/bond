@@ -16,6 +16,8 @@
 		"rbytes": "*",
 
 		"simple-xmpp": "*",
+		"node-xmpp": "0.3.x",
+		"node-stringprep": "*",
 
 		"nedb": "*"
 	}
