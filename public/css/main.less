@@ -1,19 +1,49 @@
 body {
-  padding: 50px;
+  padding: 20px;
   background: #000;
   color: #fff;
   font: 13px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
+h1 {
+	color: #df6565;
+	font-size: 30px;
+}
+
+#filter {
+	font-size: 22px;
+	padding: 10px;
+	width: 370px;
+	border-width: 0;
+	outline: none;
+	background: #c7c7c7;
+}
+
+h2 {
+	font-size: 20px;
+	text-transform: uppercase;
+	margin: 50px 0 0 0;
+}
+
+#logger {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	height: 110px;
+	overflow: scroll;
+}
 
 #buddies,
 #results {
-	background: #333;
+
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	position: absolute;
 	z-index: 2;
+	width: 390px;
+	opacity: 0.95;
 
 	.username {
 		font-weight: 400
@@ -23,11 +53,11 @@ body {
 		margin-left: 20px;
 
 		.away {
-			opacity: 0.5;
+			color: #a7a8a7;
 		}
 
 		.online {
-			color: #80e3bf;
+			color: #c5d15c;
 		}
 
 		.offline {
@@ -35,14 +65,15 @@ body {
 		}
 
 		.dnd {
-			color: #d46a45;
+			color: #df6565;
 		}
 	}
 
 	li {
-		margin: 5px 0;
+		background: #333;
+		margin: 0;
 		padding: 10px;
-		border-bottom: 1px solid #555;
+		border-top: 1px solid #555;
 
 		.loc {
 			font-size: 80%;

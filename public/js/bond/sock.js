@@ -2,6 +2,7 @@
 $(function() {
 	var connected = false;
 
+	$('#filter').focus();
 
 	$('#send')
 		.on('click',function() {
@@ -17,9 +18,13 @@ $(function() {
 			}
 		});
 
+	var $results = $('#results');
+
 	$('#filter')
-		.on('keyup', function() {
-			
+		.on('keyup', function(ev) {
+			if (ev.keyCode === 27 || $(this).val().length === 0)
+				return $('#results').fadeOut(100);
+
 			var tmp = Bond.Users.filter($(this).val());
 			
 			var $out = $('<ul />').attr('id','results');
@@ -28,16 +33,19 @@ $(function() {
 				var userId = user.userId;
 				delete user.userId;
 
+				if (i >= 5) return;
+
 				var $resources = $('<div />').addClass('resources');
 
 				$.each(user, function(resourceId, resourceStatus) {
 					$resources.append(
 						$('<div />')
 							.addClass(resourceStatus)
-							.html(resourceId.substring(0, resourceId.length - 8))  // remove shit from end
+							//.html(resourceId.substring(0, resourceId.length - 8) + ' - ' + resourceStatus.toUpperCase())  // remove shit from end
+							.html(resourceId + ' (' + resourceStatus + ')')
 							.on('click', function() {
 								$('#to').val(userId.replace(/^user-/,'') + '/' + resourceId);
-								$('#results').fadeOut(200);
+								$results.fadeOut(200);
 							})
 					);
 				});
