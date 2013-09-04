@@ -155,6 +155,7 @@ $(function() {
 
 	Bond.sockjs.onopen = function() {
 		connected = true;
+		store.clear(); // @todo - temporarily clear store
 		console.log('Connection opened.');
 	};
 
