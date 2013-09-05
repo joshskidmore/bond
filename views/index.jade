@@ -3,9 +3,10 @@ extends layouts/default
 
 append header
 	script(type='text/javascript', src='/js/store.js')
+	script(type='text/javascript', src='/js/moment-2.1.0.js')
+	script(type='text/javascript', src='/js/handlebars-1.0.12.js')
 	script(type='text/javascript', src='/js/bond/init.js')
 	script(type='text/javascript', src='/js/bond/sock.js')
-
 
 block main
 
@@ -13,21 +14,17 @@ block main
 
 	div.wrapper
 		
-		div
-			input#filter(type='text', value='')
-		
+		.search-bar
+			input#filter(type='text')
 			ul#results
 
-		//- div(style='position:absolute;bottom:0;')
-		//- 	div
-		//- 		span: strong To:
-		//- 		input(type='text',id='to')
-		//- 	div
-		//- 		span: strong Message:
-		//- 		textarea(id='message')
-		//- 	div
-		//- 		button(id='send') Send
-
-		h2 Debugger
-		ul#logger
+		#views
+			#view---debugger.view
+				h2 Debugger
+				ul#logger
 		
+
+		.hints-wrapper
+			ul#tabs
+
+			ul#hints
