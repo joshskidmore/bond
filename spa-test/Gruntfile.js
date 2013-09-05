@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'bond.css': 'less/bond.less'
+					'css/bond.css': 'less/bond.less'
 				}
 			}
 		}
