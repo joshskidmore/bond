@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"grunt": "node ./lib/run-grunt.js"
+		"grunt": "node ./lib/run-grunt.js",
+		"start": "../node-webkit-v0.7.2/node-webkit.app/Contents/MacOS/node-webkit ./"
 	},
 	"dependencies": {
 		"grunt": "~0.4.1",
