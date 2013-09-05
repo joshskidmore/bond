@@ -1,20 +1,27 @@
 {
-	"name": "bond-test",
+	"name": "bond-app",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"grunt": "node ./lib/run-grunt.js",
+		"grunt": "node ./scripts/run-grunt.js",
+		"repair": "./scripts/install.sh",
 		"start": "../node-webkit-v0.7.2/node-webkit.app/Contents/MacOS/node-webkit ./"
 	},
 	"dependencies": {
 		"grunt": "~0.4.1",
-		"grunt-contrib-jade": "~0.8.0"
+		"grunt-contrib-jade": "~0.8.0",
+		"grunt-contrib-less": "~0.7.0",
+
+		"node-xmpp": "0.3.x",
+		"underscore": "*"
 	},
 	"main": "index.html",
 	"window": {
-		"width": 400,
-		"height": 520,
+		"min_width": 500,
+		"min_height": 400,
 		"title": "Bond - Gold Edition",
-		"toolbar": false
+		"toolbar": false,
+		"frame": true,
+		"resizable": true
 	}
 }
