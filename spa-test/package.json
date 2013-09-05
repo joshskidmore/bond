@@ -1,0 +1,16 @@
+{
+	"name": "bond-test",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-jade": "~0.8.0"
+	},
+	"main": "index.html",
+	"window": {
+		"width": 400,
+		"height": 520,
+		"title": "Bond - Gold Edition",
+		"toolbar": false
+	}
+}
