@@ -2,6 +2,9 @@
 	"name": "bond-test",
 	"version": "0.0.1",
 	"private": true,
+	"scripts": {
+		"grunt": "node ./lib/run-grunt.js"
+	},
 	"dependencies": {
 		"grunt": "~0.4.1",
 		"grunt-contrib-jade": "~0.8.0"
