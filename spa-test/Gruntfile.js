@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'public/index.html': 'views/index.jade'
+					'public/chat.html': 'public/src/views/chat.jade'
 				}
 			}
 		},

@@ -1,5 +1,5 @@
 #Build Targets:
+/public/*.html
 /public/css/*.css
 /public/fonts
-/public/index.html
 /public/js/*.js

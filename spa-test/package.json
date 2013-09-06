@@ -17,7 +17,7 @@
 		"node-xmpp": "0.3.x",
 		"underscore": "*"
 	},
-	"main": "public/index.html",
+	"main": "public/chat.html",
 	"window": {
 		"title": "Bond - Gold Edition",
 		"min_width": 500,
