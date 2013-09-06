@@ -11,6 +11,16 @@ body {
 	}
 }
 
-a:active {
-	color: @active-state-color;
+a {
+	&:active {
+		color: @active-state-color;
+	}
+
+	&.glyphicon {
+		text-decoration: none;
+
+		&:hover {
+			color: @active-state-color;
+		}
+	}
 }

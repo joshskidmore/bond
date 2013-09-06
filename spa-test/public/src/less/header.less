@@ -17,20 +17,37 @@
 		margin: 0 6px 0 0;
 		line-height: inherit;
 	}
-}
 
-#nav-toggle {
-	float: left;
-	line-height: 20px;
-	margin: 3px 0 0 6px;
-	height: 24px;
-	font-size: 20px;
-	color: #777;
-	transition: -webkit-transform .6s ease;
-	
-	&:hover {
-		color: @active-state-color;
-		text-decoration: none;
+	a.glyphicon {
+		line-height: 20px;
+		margin-top: 3px;
+		height: 24px;
+		font-size: 20px;
+		color: #777;
+	}
+
+	#nav-toggle {
+		float: left;
+		margin-left: 6px;
+		transition: -webkit-transform .6s ease;
+
+		&:hover {
+			color: @active-state-color;
+		}
+	}
+
+	#settings-button {
+		float: right;
+		margin-right: 6px;
+		transition: -webkit-transform .6s ease;	
+
+		&:hover {
+			-webkit-transform: rotate(360deg);
+
+			&:hover {
+				color: @active-state-color;
+			}
+		}
 	}
 }
 
