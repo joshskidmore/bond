@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'index.html': 'views/index.jade'
+					'public/index.html': 'views/index.jade'
 				}
 			}
 		},
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'css/bond.css': 'less/bond.less'
+					'public/css/bond.css': 'less/bond.less'
 				}
 			}
 		}

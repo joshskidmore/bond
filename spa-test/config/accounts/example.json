@@ -1,0 +1,7 @@
+{
+	"label": "FRIENDLY_LABEL",
+	"service": "gtalk",
+	"username": "YOU NEED TO EDIT config/accounts/example.json!",
+	"password": "PASSWORD",
+	"connectOnStartup": false
+}

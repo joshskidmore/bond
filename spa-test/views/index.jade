@@ -2,31 +2,21 @@ extends layouts/main
 
 block content
 	script.
-		var bond = require('./lib');
+		// note: can't require nw.gui from required lib; passing through
+		var bond = require('../lib');
 
-		var gTalk = new bond.services.GTalk();
+		bond.init( require('nw.gui') );  // ref from public
 
-		//- gTalk.connect({
-		//- 	"username": "",
-		//- 	"password": ""
-		//- });
-
-		//- gTalk.on('connected', function() {
-		//- 	console.log(arguments);
-		//- });
-
-		//- gTalk.on('presence', function(data) {
-
-		//- 	$('#debug')
-		//- 		.append(
-		//- 			$('<p />')
-		//- 				.html(  JSON.stringify(data) )
-
-		//- 		);
-		//- });
+		bond.eventManager.on('all', function(data) {
+			$('#debug')
+				.prepend(
+					$('<p />')
+						.html(  JSON.stringify(data) )
+				);
+		});
 
 
 	.container
 		h1 Bond
 
-		#debug
+		#debug(style='color:#fff;')

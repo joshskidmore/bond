@@ -16,13 +16,14 @@
 		"node-xmpp": "0.3.x",
 		"underscore": "*"
 	},
-	"main": "index.html",
+	"main": "public/index.html",
 	"window": {
+		"title": "Bond - Gold Edition",
 		"min_width": 500,
 		"min_height": 400,
-		"title": "Bond - Gold Edition",
 		"toolbar": false,
 		"frame": true,
-		"resizable": true
+		"resizable": true,
+		"position": "mouse"
 	}
 }
