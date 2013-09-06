@@ -8,19 +8,32 @@
 	height: 100%;
 	.transition(width 0.3s ease, left 0.3s ease;);
 
+	h3 {
+		margin: 12px 0 6px 12px;
+		padding: 0;
+		color: #bbb;
+		font-weight: 200;
+		letter-spacing: .1em;
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+
 	> a {
 		display: block;
-		color: #f8f8f8;
-		font-size: 16px;
+		color: #eee;
+		font-size: 13px;
+		font-weight: 200;
+		letter-spacing: .1em;
 		white-space: nowrap;
 		padding: 0 12px;
-		height: 50px;
-		line-height: 50px;
+		line-height: 20px;
 		position: relative;
+		left: 0;
+		.transition(left 0.15s ease;);
 
 		&:hover {
-			background: #555;
 			text-decoration: none;
+			left: 2px;
 		}
 
 		&:active {
@@ -29,9 +42,9 @@
 		}
 
 		i {
-			font-size: 18px;
+			font-size: 12px;
 			line-height: inherit;
-			margin: 0 14px 0 3px;
+			margin: 0 8px 0 0;
 		}
 	}
 }
