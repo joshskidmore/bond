@@ -11,4 +11,5 @@ Bond is a modern approach to messaging.
 5. **$ npm run-script install-nw**   # Install node-webkit
 6. **$ npm run-script grunt**  # Compile jade + less
 7. **$ npm run-script repair**   # (Optionally) repair node-expat for use with node-webkit
-6. **$ npm start**  # Run Bond through node-webkit
+8. Add a gTalk account to config/accounts/example.json. (Be sure to change "connectOnStartup" boolean true!)
+9. **$ npm start**  # Run Bond through node-webkit
