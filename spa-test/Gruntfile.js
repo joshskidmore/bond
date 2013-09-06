@@ -32,7 +32,8 @@ module.exports = function(grunt) {
 					separator: ';'
 				},
 				src: [
-					'public/src/js/jquery-2.0.3.js'
+					'public/src/js/jquery-2.0.3.js',
+					'public/src/js/side-menu.js'
 				],
 				dest: 'public/js/bond.js'
 			}

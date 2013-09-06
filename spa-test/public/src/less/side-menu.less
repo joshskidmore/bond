@@ -2,14 +2,15 @@
 	background-color: #1C1C1C;
 	position: fixed;
 	top: 0;
-	left: 0;
-	overflow-x: hidden;
+	left: -@menu-width;
 	width: @menu-width;
+	overflow-x: hidden;
 	height: 100%;
 	.transition(width 0.3s ease, left 0.3s ease;);
 
 	h3 {
-		margin: 12px 0 6px 12px;
+		margin: 0 0 0 11px;
+		line-height: @header-height;
 		padding: 0;
 		color: #bbb;
 		font-weight: 200;
@@ -37,8 +38,8 @@
 		}
 
 		&:active {
-			background: #000;
-			color: #47a3da;
+			background: #131313;
+			color: @active-state-color;
 		}
 
 		i {
@@ -46,5 +47,11 @@
 			line-height: inherit;
 			margin: 0 8px 0 0;
 		}
+	}
+}
+
+body.side-menu-expanded {
+	#side-menu {
+		left: 0;
 	}
 }

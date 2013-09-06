@@ -6,15 +6,40 @@
 	.transition(left .3s ease);
 	position: fixed;
 	top: 0;
-	left: @menu-width;
+	left: 0;
 	right: 0;
 
 	h1 {
-		float: left;
+		float: right;
 		font-size: 17px;
 		font-weight: normal;
 		color: #6c7278;
-		margin: 0 0 0 20px;
+		margin: 0 6px 0 0;
 		line-height: inherit;
+	}
+}
+
+#nav-toggle {
+	float: left;
+	line-height: 20px;
+	margin: 3px 0 0 6px;
+	height: 24px;
+	font-size: 20px;
+	color: #777;
+	transition: -webkit-transform .6s ease;
+	
+	&:hover {
+		color: @active-state-color;
+		text-decoration: none;
+	}
+}
+
+body.side-menu-expanded {
+	#header {
+		left: @menu-width;
+	}
+
+	#nav-toggle {
+		-webkit-transform: rotate(180deg);
 	}
 }
