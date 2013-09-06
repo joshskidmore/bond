@@ -3,7 +3,7 @@
 Bond is a modern approach to messaging.
 
 
-## Bond "Gold Edition"/node-webkit Dev Install
+## Bond _Gold Edition_/node-webkit Dev Install
 1. Confirm node and npm are installed.
 2. `$ git clone git@github.com:joshskidmore/bond.git`
 3. `$ cd spa-test`
