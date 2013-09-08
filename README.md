@@ -5,7 +5,7 @@ Bond is a modern approach to messaging.
 
 ## Bond _Gold Edition_/node-webkit Dev Install
 1. Confirm node and npm are installed.
-2. `$ git clone git@github.com:joshskidmore/bond.git`
+2. `$ git clone https://github.com/joshskidmore/bond.git`
 3. `$ cd spa-test`
 4. `$ npm install   # Install npm modules`
 5. `$ npm run-script install-nw   # Install node-webkit`
