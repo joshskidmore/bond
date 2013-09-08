@@ -1,10 +1,11 @@
 {
-	"name": "bond-app",
+	"name": "Bond",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
 		"grunt": "node ./scripts/run-grunt.js",
 		"install-nw": "./scripts/install-nw.sh",
+		"package-osx": "./scripts/package-osx.sh",
 		"repair": "./scripts/repair.sh",
 		"start": "../node-webkit-v0.7.2-osx-ia32/node-webkit.app/Contents/MacOS/node-webkit ./"
 	},
@@ -14,7 +15,7 @@
 		"grunt-contrib-less": "~0.7.0",
 		"grunt-contrib-copy": "~0.4.1",
 		"grunt-contrib-concat": "~0.3.0",
-		"node-xmpp": "0.3.x",
+		"node-xmpp": "0.6.x",
 		"underscore": "*"
 	},
 	"main": "public/chat.html",
