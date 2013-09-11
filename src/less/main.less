@@ -1,0 +1,26 @@
+body {
+	background: #131313;
+	position: relative;
+	overflow-x: hidden;
+	left: 0;
+	top: @header-height;
+	.transition(left 0.3s ease);
+
+	&.side-menu-expanded {
+		left: @menu-width;
+	}
+}
+
+a {
+	&:active {
+		color: @active-state-color;
+	}
+
+	&.glyphicon {
+		text-decoration: none;
+
+		&:hover {
+			color: @active-state-color;
+		}
+	}
+}

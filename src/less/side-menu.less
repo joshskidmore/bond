@@ -1,0 +1,57 @@
+#side-menu {
+	background-color: #1C1C1C;
+	position: fixed;
+	top: 0;
+	left: -@menu-width;
+	width: @menu-width;
+	overflow-x: hidden;
+	height: 100%;
+	.transition(width 0.3s ease, left 0.3s ease;);
+
+	h3 {
+		margin: 0 0 0 11px;
+		line-height: @header-height;
+		padding: 0;
+		color: #bbb;
+		font-weight: 200;
+		letter-spacing: .1em;
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+
+	> a {
+		display: block;
+		color: #eee;
+		font-size: 13px;
+		font-weight: 200;
+		letter-spacing: .1em;
+		white-space: nowrap;
+		padding: 0 12px;
+		line-height: 20px;
+		position: relative;
+		left: 0;
+		.transition(left 0.15s ease;);
+
+		&:hover {
+			text-decoration: none;
+			left: 2px;
+		}
+
+		&:active {
+			background: #131313;
+			color: @active-state-color;
+		}
+
+		i {
+			font-size: 12px;
+			line-height: inherit;
+			margin: 0 8px 0 0;
+		}
+	}
+}
+
+body.side-menu-expanded {
+	#side-menu {
+		left: 0;
+	}
+}

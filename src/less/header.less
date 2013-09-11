@@ -1,0 +1,62 @@
+#header {
+	height: @header-height;
+	line-height: @header-height;
+	background-color: #313131;
+	overflow: hidden;
+	.transition(left .3s ease);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	h1 {
+		float: right;
+		font-size: 17px;
+		font-weight: normal;
+		color: #6c7278;
+		margin: 0 6px 0 0;
+		line-height: inherit;
+	}
+
+	a.glyphicon {
+		line-height: 20px;
+		margin-top: 3px;
+		height: 24px;
+		font-size: 20px;
+		color: #777;
+	}
+
+	#nav-toggle {
+		float: left;
+		margin-left: 6px;
+		transition: -webkit-transform .6s ease;
+
+		&:hover {
+			color: @active-state-color;
+		}
+	}
+
+	#settings-button {
+		float: right;
+		margin-right: 6px;
+		transition: -webkit-transform .6s ease;	
+
+		&:hover {
+			-webkit-transform: rotate(360deg);
+
+			&:hover {
+				color: @active-state-color;
+			}
+		}
+	}
+}
+
+body.side-menu-expanded {
+	#header {
+		left: @menu-width;
+	}
+
+	#nav-toggle {
+		-webkit-transform: rotate(180deg);
+	}
+}

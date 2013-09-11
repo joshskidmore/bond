@@ -5,18 +5,9 @@
 *.out
 Thumbs.db
 
-# NPM
+# Node / NPM
 node_modules
-
-# Nodemon
-.monitor
-
-# Webstorm
-.idea
-
-# Node specific
 npm-debug.log
-/public/css/*.css
 
-
-# Bond specific
+# Bond
+/app/*
