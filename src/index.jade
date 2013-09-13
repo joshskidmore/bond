@@ -4,6 +4,17 @@ html(lang='en', data-ng-app='bond')
 		title
 		link(rel='stylesheet', href='css/bond.css')
 		script(src='js/bond.js')
+		script.
+			var gui = require('nw.gui'),
+				bondWin = gui.Window.get();
 
-	body
+			// devtools on f12
+			window.addEventListener('keydown', function (ev) {
+				if (ev.keyIdentifier === 'F12')
+					bondWin.showDevTools();
+			});
+
+	body(ng-class='{"side-menu-expanded": sideMenuExpanded}')
 		div(ng-view)
+
+
