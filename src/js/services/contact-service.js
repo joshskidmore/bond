@@ -1,7 +1,3 @@
-bond.factory('contact', function() {
-	return new ContactService();
-});
-
 var util = require('util'),
 	EventEmitter = require('events').EventEmitter;
 
@@ -19,3 +15,5 @@ ContactService.prototype.getOnlineContacts = function() {
 		{ provider: 'gtalk', name: 'Bob Williams' }
 	];
 };
+
+bond.service('contact', ContactService);
