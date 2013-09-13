@@ -6,10 +6,9 @@
 #side-menu(ng-controller='ContactsCtrl')
 	h3 Contacts
 
-	div(ng-repeat='contact in contacts')
-		a(href='')
-			i.glyphicon.glyphicon-user
-			span {{ contact.name }}
+	a(href='', ng-repeat='contact in contacts')
+		i.glyphicon.glyphicon-user
+		span {{ contact.name }}
 
 .container
 	h1 Bond
