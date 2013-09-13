@@ -45,7 +45,8 @@ module.exports = function(grunt) {
 					'src/vendor/angular.min.js',
 					'src/vendor/mousetrap.min.js',
 					'src/js/controllers/*.js',
-					'src/js/app.js'
+					'src/js/app.js',
+					'src/js/services/*.js',
 				],
 				dest: 'app/js/bond.js'
 			}
