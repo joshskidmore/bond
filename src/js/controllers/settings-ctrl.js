@@ -1,3 +1,3 @@
-function SettingsCtrl($scope) {
+function SettingsCtrl($scope, account) {
 
 }
