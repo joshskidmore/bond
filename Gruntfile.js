@@ -45,8 +45,7 @@ module.exports = function(grunt) {
 					'src/vendor/angular.min.js',
 					'src/vendor/mousetrap.min.js',
 					'src/js/controllers/*.js',
-					'src/js/app.js',
-					'src/js/services/*.js',
+					'src/js/app.js'
 				],
 				dest: 'app/js/bond.js'
 			}
@@ -62,6 +61,16 @@ module.exports = function(grunt) {
 						src: ['src/vendor/bootstrap/fonts/*'],
 						dest: 'app/fonts/',
 						flatten: true
+					}
+				]
+			},
+			lib: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src/lib/',
+						src: ['**'],
+						dest: 'app/lib/'
 					}
 				]
 			}
