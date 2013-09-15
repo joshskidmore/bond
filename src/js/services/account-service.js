@@ -5,16 +5,32 @@ var util = require('util'),
 function AccountService() {
 	EventEmitter.call(this);
 
-	this._updateAccountsFromDisk();
+	// todo: this should probably be in a try/catch. Not sure how to surface errors
+	// outside of the service though...
+	this.accounts = this._readAccountsFromDisk();
 }
 util.inherits(AccountService, EventEmitter);
 
 /**
- * Forces the accounts array to be refreshed from what's in the file system.
- * Intended for internal use only.
+ * Fetches the accounts data directly from disk (intended for internal use only).
  */
-AccountService.prototype._updateAccountsFromDisk = function() {
+AccountService.prototype._readAccountsFromDisk = function() {
 	var rawData = userData.readFileSync('accounts.json');
+
+	if (!rawData) return [];
+
+	return JSON.parse(rawData);
+};
+
+/**
+ * Fetches the accounts data directly from disk (intended for internal use only).
+ */
+AccountService.prototype.saveAccounts = function() {
+	var strAccounts = JSON.stringify(this.accounts);
+
+	// todo: same as above... needs a try/catch, but don't know what to do once
+	// we have the error.
+	userData.writeFileSync(strAccounts);
 };
 
 bond.service('account', AccountService);
