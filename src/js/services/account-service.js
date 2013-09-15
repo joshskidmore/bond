@@ -23,7 +23,7 @@ AccountService.prototype._readAccountsFromDisk = function() {
 };
 
 /**
- * Fetches the accounts data directly from disk (intended for internal use only).
+ * Syncs the accounts array back to disk.
  */
 AccountService.prototype.saveAccounts = function() {
 	var strAccounts = JSON.stringify(this.accounts);
