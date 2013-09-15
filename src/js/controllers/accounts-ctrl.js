@@ -1,0 +1,2 @@
+function AccountsCtrl($scope, account) {
+}
