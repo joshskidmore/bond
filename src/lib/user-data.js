@@ -8,19 +8,32 @@
 
 var fs = require('fs'),
 	path = require('path'),
+	mkdirp = require('mkdirp'),
 	userHome = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
 	bondRoot = path.resolve(userHome, './.bond');
 
-module.exports = {
-	readFileSync: function(filePath) {
-		var fullPath = path.resolve(bondRoot, filePath);
-		try {
-			return fs.readFileSync(fullPath, 'utf8');
-		} catch (err) {
-			if (/ENOENT/.test(err.message)) {
-				return null;
-			}
-			throw err;
+var userData = module.exports = {}
+
+userData.readFileSync = function(filePath) {
+	var fullPath = path.resolve(bondRoot, filePath);
+	try {
+		return fs.readFileSync(fullPath, 'utf8');
+	} catch (err) {
+		if (err.code === 'ENOENT') {
+			return null;
 		}
+		throw err;
 	}
+};
+
+userData.writeFileSync = function(filePath, data) {
+	var dirPath = filePath.split('/').slice(0, -1).join('/'),
+		fullDirPath = path.resolve(bondRoot, dirPath),
+		fullFilePath = path.resolve(bondRoot, filePath);
+
+	if (!fs.existsSync(fullDirPath)) {
+		mkdirp.sync(fullDirPath);
+	}
+
+	fs.writeFileSync(fullFilePath, 'utf8', data);
 };
