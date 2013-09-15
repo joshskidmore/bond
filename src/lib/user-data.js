@@ -18,7 +18,6 @@ module.exports = {
 			return fs.readFileSync(fullPath, 'utf8');
 		} catch (err) {
 			if (/ENOENT/.test(err.message)) {
-				console.log("FILE NOT FOUND!");
 				return null;
 			}
 			throw err;
