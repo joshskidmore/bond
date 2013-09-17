@@ -3,19 +3,16 @@
 	a(href='#/settings') Back to Settings
 
 	form.form-horizontal(novalidate)
-		div(ng-repeat='option in provider.configurableOptions')
-			div(ng-switch='option.type')
-				.form-group(ng-switch-when='text')
-					label.col-xs-2.control-label(for='{{option.key}}') {{option.label}}:
-					input.col-xs-9(type='text', ng-model='account[option.key]')
-				.form-group(ng-switch-when='password')
-					label.col-xs-3.control-label(for='{{option.key}}') {{option.label}}:
-					input.col-xs-9(type='password', ng-model='account[option.key]')
-				.form-group(ng-switch-when='bool')
-					.checkbox
-						label
-							input(type='checkbox', ng-model='account[option.key]')
-							| {{option.label}}
-
+		div(ng-repeat='option in provider.configurableOptions', ng-switch='option.type')
+			.form-group(ng-switch-when='text')
+				label.col-xs-2.control-label(for='{{option.key}}') {{option.label}}:
+				input.col-xs-9(type='text', ng-model='account[option.key]')
+			.form-group(ng-switch-when='password')
+				label.col-xs-3.control-label(for='{{option.key}}') {{option.label}}:
+				input.col-xs-9(type='password', ng-model='account[option.key]')
+			.checkbox(ng-switch-when='bool')
+				label
+					input(type='checkbox', ng-model='account[option.key]')
+					| {{option.label}}
 
 		button(type='submit', ng-click='saveAccount()').btn.btn-sm.btn-default Save
