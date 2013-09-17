@@ -37,14 +37,4 @@ AccountService.prototype.saveAccounts = function() {
 	userData.writeFileSync('accounts.json', strAccounts);
 };
 
-AccountService.prototype.getBlankGTalkAccount = function() {
-	return {
-		label: '',
-		service: 'gtalk',
-		username: '',
-		password: '',
-		connectOnStartup: false
-	};
-};
-
 bond.service('account', AccountService);
