@@ -2,5 +2,9 @@
 	h1 Settings Page
 	a(href='#') Back to Chat
 	
-	div
-		a(href='#/accounts') Accounts
+	h2 Accounts
+
+	ul
+		li(ng-repeat='account in accounts')
+			a(href='#/accounts/{{account.service}}/{{$index}}') {{ account.label }}
+		li: a(href='#/accounts/gtalk/-1') Add New GTalk Account

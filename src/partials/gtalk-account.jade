@@ -1,0 +1,19 @@
+.container
+	h1 Add/Edit GTalk Account
+	a(href='#/settings') Back to Settings
+
+	form(novalidate)
+		.form-group
+			label(for='account-label') Account Label
+			input#account-label.form-control(type='text', ng-model='account.label')
+		.form-group
+			label(for='account-username') Username
+			input#account-username.form-control(type='text', ng-model='account.username')
+		.form-group
+			label(for='account-password') Password
+			input#account-password.form-control(type='password', ng-model='account.password')
+		.checkbox
+			label
+				input(type='checkbox', ng-model='account.connectOnStartup')
+				| Connect On Startup?
+		button(type='submit').btn.btn-default Save
