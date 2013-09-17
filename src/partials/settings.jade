@@ -2,15 +2,13 @@
 	h1 Settings Page
 	a(href='#') Back to Chat
 	
-	h2 Accounts
+	.panel.panel-default
+		.panel-heading: h3.panel-title Accounts
+		.list-group
+			li.list-group-item(ng-repeat='account in accounts')
+				a(href='#/accounts/{{account.service}}/{{$index}}') {{ account.label }}
+		.panel-footer
+			strong Add Account:
+			a.btn.btn-link(ng-repeat='(providerId, provider) in providers', href='#/accounts/{{providerId}}/-1')
+				| {{ provider.name }}
 
-	ul
-		li(ng-repeat='account in accounts')
-			a(href='#/accounts/{{account.service}}/{{$index}}') {{ account.label }}
-		//li: a(href='#/accounts/gtalk/-1') Add New GTalk Account
-
-
-	h2 Add New Account
-	
-	ul
-		li(ng-repeat='(providerId, provider) in providers'): a(href='#/accounts/{{providerId}}/-1') {{ provider.name }}
