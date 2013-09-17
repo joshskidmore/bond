@@ -17,7 +17,7 @@ util.inherits(AccountService, EventEmitter);
 AccountService.prototype._readAccountsFromDisk = function() {
 	var rawData = userData.readFileSync('accounts.json');
 
-	if (!rawData) return [];
+	if (!rawData || !rawData.length) return [];
 
 	return JSON.parse(rawData);
 };
@@ -31,6 +31,16 @@ AccountService.prototype.saveAccounts = function() {
 	// todo: same as above... needs a try/catch, but don't know what to do once
 	// we have the error.
 	userData.writeFileSync(strAccounts);
+};
+
+AccountService.prototype.getBlankGTalkAccount = function() {
+	return {
+		label: '',
+		service: 'gtalk',
+		username: '',
+		password: '',
+		connectOnStartup: false
+	};
 };
 
 bond.service('account', AccountService);
