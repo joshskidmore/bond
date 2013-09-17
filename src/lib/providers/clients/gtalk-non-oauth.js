@@ -11,7 +11,7 @@ var bondCore = require('../../'),
 	xmpp = require('node-xmpp');
 
 
-exports.name = 'Google Talk (Non OAuth)';
+exports.name = 'gTalk (Non-oAuth)';
 exports.description = 'Early version of Google Talk Without OAuth (only requires password)';
 exports.version = 0.1;
 var configurableOptions = exports.configurableOptions = [

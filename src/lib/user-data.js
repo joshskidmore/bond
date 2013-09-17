@@ -35,5 +35,5 @@ userData.writeFileSync = function(filePath, data) {
 		mkdirp.sync(fullDirPath);
 	}
 
-	fs.writeFileSync(fullFilePath, 'utf8', data);
+	fs.writeFileSync(fullFilePath, data, { encoding: 'utf8' } );
 };

@@ -10,6 +10,8 @@ function AccountService() {
 	// todo: this should probably be in a try/catch. Not sure how to surface errors
 	// outside of the service though...
 	this.accounts = this._readAccountsFromDisk();
+
+	this.providers = bondCore.providers.list();
 }
 util.inherits(AccountService, EventEmitter);
 
@@ -28,11 +30,11 @@ AccountService.prototype._readAccountsFromDisk = function() {
  * Syncs the accounts array back to disk.
  */
 AccountService.prototype.saveAccounts = function() {
-	var strAccounts = JSON.stringify(this.accounts);
+	var strAccounts = angular.toJson(this.accounts);
 
 	// todo: same as above... needs a try/catch, but don't know what to do once
 	// we have the error.
-	userData.writeFileSync(strAccounts);
+	userData.writeFileSync('accounts.json', strAccounts);
 };
 
 AccountService.prototype.getBlankGTalkAccount = function() {

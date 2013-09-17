@@ -7,4 +7,10 @@
 	ul
 		li(ng-repeat='account in accounts')
 			a(href='#/accounts/{{account.service}}/{{$index}}') {{ account.label }}
-		li: a(href='#/accounts/gtalk/-1') Add New GTalk Account
+		//li: a(href='#/accounts/gtalk/-1') Add New GTalk Account
+
+
+	h2 Add New Account
+	
+	ul
+		li(ng-repeat='(providerId, provider) in providers'): a(href='#/accounts/{{providerId}}/-1') {{ provider.name }}
