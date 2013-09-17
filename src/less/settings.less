@@ -1,0 +1,14 @@
+#account-form .form-group {
+	.validation-message {
+		opacity: 0;
+		left: 5px;
+		.transition(opacity 0.3s ease, left 0.3s ease;);
+	}
+
+	&.has-error {
+		.validation-message {
+			opacity: 1;
+			left: 0;
+		}
+	}
+}

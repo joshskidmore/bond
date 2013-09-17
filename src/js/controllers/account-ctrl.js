@@ -11,7 +11,7 @@ function AccountCtrl($scope, $routeParams, $location, account) {
 		};
 
 		provider.configurableOptions.forEach(function(option) {
-			newAccount[option.key] = option.default
+			newAccount[option.key] = option.default;
 		});
 
 		$scope.isNewAccount = true;
