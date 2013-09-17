@@ -1,6 +1,8 @@
 var util = require('util'),
 	EventEmitter = require('events').EventEmitter,
-	userData = require('./lib/user-data');
+	bondCore = require('./lib'),
+	userData = bondCore.userData;
+
 
 function AccountService() {
 	EventEmitter.call(this);
