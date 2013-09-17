@@ -30,7 +30,7 @@ AccountService.prototype._readAccountsFromDisk = function() {
  * Syncs the accounts array back to disk.
  */
 AccountService.prototype.saveAccounts = function() {
-	var strAccounts = angular.toJson(this.accounts);
+	var strAccounts = angular.toJson(this.accounts, true);
 
 	// todo: same as above... needs a try/catch, but don't know what to do once
 	// we have the error.
