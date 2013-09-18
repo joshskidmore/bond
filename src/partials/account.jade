@@ -1,21 +1,32 @@
-.container
-	h1 Add/Edit {{provider.name}} Account
-	a(href='#/settings') Back to Settings
+#header
+	a#home-button.glyphicon.glyphicon-home(href='#/')
+	h1 Settings
 
-	form#account-form.form-horizontal(name='accountForm', bootstrap-form-classes)
-		div(ng-repeat='option in provider.configurableOptions', ng-switch='option.type')
-			.form-group(ng-switch-when='text')
-				label.col-xs-2.control-label(for='{{option.key}}') {{option.label}}:
-				input.col-xs-6(type='text', name='{{option.key}}', ng-model='account[option.key]', required, data-required='true', data-trigger='change focusout')
-				p.validation-message.text-danger.col-xs-4 Required
-			.form-group(ng-switch-when='password')
-				label.col-xs-2.control-label(for='{{option.key}}') {{option.label}}:
-				input.col-xs-6(type='password', name='{{option.key}}', ng-model='account[option.key]', required)
-				p.validation-message.text-danger.col-xs-4 Required
-			.checkbox(ng-switch-when='bool')
-				label
-					input(type='checkbox', name='{{option.key}}', ng-model='account[option.key]')
-					| {{option.label}}
+.settings-container
+	.panel.panel-default
+		.panel-heading: h3.panel-title Add/Edit Account: {{provider.name}}
 
-		button(type='submit', ng-disabled='accountForm.$invalid', ng-click='saveAccount()').btn.btn-sm.btn-default Save
+		.panel-body
+			form#account-form.form-horizontal(name='accountForm', bootstrap-form-classes)
+				div(ng-repeat='option in provider.configurableOptions', ng-switch='option.type')
+					.form-group(ng-switch-when='text')
+						label.col-sm-2.col-xs-12.control-label(for='{{option.key}}') {{option.label}}:
+						.col-xs-6: input(type='text', name='{{option.key}}', ng-model='account[option.key]', required, data-required='true', data-trigger='change focusout')
+						p.col-xs-6.col-sm-4.validation-message Required
+					.form-group(ng-switch-when='password')
+						label.col-xs-2.control-label(for='{{option.key}}') {{option.label}}:
+						.col-xs-6: input(type='password', name='{{option.key}}', ng-model='account[option.key]', required)
+						p.col-xs-4.validation-message Required
+					.checkbox(ng-switch-when='bool')
+						label
+							input(type='checkbox', name='{{option.key}}', ng-model='account[option.key]')
+							| {{option.label}}
+
+				button(type='submit', ng-disabled='accountForm.$invalid', ng-click='saveAccount()').btn.btn-sm.btn-default Save
+
+		.panel-footer
+			strong Add Account:
+			a.btn.btn-link(ng-repeat='(providerId, provider) in providers', href='#/accounts/{{providerId}}/-1')
+				| {{ provider.name }}
+
 
