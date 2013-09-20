@@ -8,7 +8,8 @@
 		"nw-gyp-repair": "./scripts/nw-gyp-repair.sh",
 		"install-nw-osx": "./scripts/install-nw-osx.sh",
 		"build": "npm run-script grunt && cd app && npm install && cd .. && npm run-script nw-gyp-repair",
-		"start": "./node-webkit-v0.7.2-osx-ia32/node-webkit.app/Contents/MacOS/node-webkit ./app"
+		"start": "./node-webkit-v0.7.2-osx-ia32/node-webkit.app/Contents/MacOS/node-webkit ./app",
+		"start-dev": "npm run-script grunt && npm start"
 	},
 	"dependencies": {
 		"grunt": "~0.4.1",
