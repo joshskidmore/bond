@@ -1,8 +1,8 @@
 function MainCtrl($scope) {
 	var nwWindow = require('nw.gui').Window.get();
 
-	$scope.toggleSideMenu = function() {
-		$scope.sideMenuExpanded = !$scope.sideMenuExpanded;
+	$scope.toggleContacts = function() {
+		$scope.contactsBarExpanded = !$scope.contactsBarExpanded;
 	};
 
 	Mousetrap.bind('f12', function() {
@@ -10,7 +10,7 @@ function MainCtrl($scope) {
 	});
 
 	Mousetrap.bind('ctrl+p', function() {
-		$scope.toggleSideMenu();
+		$scope.toggleContacts();
 		$scope.$apply();
 	});
 }
