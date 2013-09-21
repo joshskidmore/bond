@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 				},
 				src: [
 					'src/vendor/jquery-2.0.3.js',
-					'src/vendor/angular.min.js',
+					'src/vendor/angular.js',
 					'src/vendor/mousetrap.min.js',
 					'src/js/controllers/*.js',
 					'src/js/app.js',
