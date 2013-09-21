@@ -6,4 +6,8 @@ html(lang='en', data-ng-app='bond')
 		script(src='js/bond.js')
 
 	body(ng-controller='MainCtrl', ng-class='{"side-menu-expanded": sideMenuExpanded}')
-		div(ng-view)
+		#header
+			a#nav-toggle.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleSideMenu()')
+			a#settings-button.glyphicon.glyphicon-cog(href='#/settings')
+			h1 Bond Chat
+		ng-include(src='"partials/chat.html"')

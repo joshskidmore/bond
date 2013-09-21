@@ -1,14 +1,11 @@
-#header
-	a#nav-toggle.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleSideMenu()')
-	a#settings-button.glyphicon.glyphicon-cog(href='#/settings')
-	h1 Bond Chat
+div(ng-controller='ChatCtrl')
 
-#side-menu(ng-controller='ContactsCtrl')
-	h3 Contacts
+	#side-menu(ng-controller='ContactsCtrl')
+		h3 Contacts
 
-	a(href='', ng-repeat='contact in contacts')
-		i.glyphicon.glyphicon-user
-		span {{ contact.name }}
+		a(href='', ng-repeat='contact in contacts')
+			i.glyphicon.glyphicon-user
+			span {{ contact.name }}
 
-.container
-	h1 Bond
+	.container
+		h1 Bond
