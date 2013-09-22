@@ -5,11 +5,12 @@ html(lang='en', data-ng-app='bond')
 		link(rel='stylesheet', href='css/bond.css')
 		script(src='js/bond.js')
 
-	body(ng-controller='MainCtrl', ng-class='{"contacts-bar-expanded": contactsBarExpanded}')
+	body(ng-controller='MainCtrl', ng-class='{"contacts-bar-expanded": contactsBarExpanded, "settings-bar-expanded": settingsBarExpanded}')
 		#header
-			a#nav-toggle.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleContacts()')
-			a#settings-button.glyphicon.glyphicon-cog(href='#/settings')
+			a#contacts-toggle.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleContacts()')
+			a#settings-button.glyphicon.glyphicon-cog(href='', ng-click='toggleSettings()')
 			h1 Bond Chat
 		ng-include(src='"partials/contacts-bar.html"')
+		ng-include(src='"partials/settings-bar.html"')
 
 		h1 Bond

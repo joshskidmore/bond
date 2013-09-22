@@ -3,7 +3,7 @@
 	line-height: @header-height;
 	background-color: #313131;
 	overflow: hidden;
-	.transition(left .3s ease);
+	.transition(left .3s ease, right .3s ease;);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -26,7 +26,7 @@
 		color: #777;
 	}
 
-	#nav-toggle {
+	#contacts-button {
 		float: left;
 		margin-left: 6px;
 		transition: -webkit-transform .6s ease;
@@ -51,7 +51,7 @@
 		transition: -webkit-transform .6s ease;	
 
 		&:hover {
-			-webkit-transform: rotate(360deg);
+			// -webkit-transform: rotate(180deg);
 
 			&:hover {
 				color: @link-hover-color;
@@ -65,7 +65,17 @@ body.contacts-bar-expanded {
 		left: @contacts-bar-width;
 	}
 
-	#nav-toggle {
+	#contacts-button {
+		-webkit-transform: rotate(180deg);
+	}
+}
+
+body.settings-bar-expanded {
+	#header {
+		right: @settings-bar-width;
+	}
+
+	#settings-button {
 		-webkit-transform: rotate(180deg);
 	}
 }
