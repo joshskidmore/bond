@@ -1,15 +1,14 @@
-#settings-bar
+#settings-bar(ng-controller='SettingsCtrl')
 	h3 Settings
 
 	.panel.panel-default
 		.panel-heading: h3.panel-title Accounts
 		.list-group
-			li.list-group-item: a(href='#') Account 1
-			li.list-group-item: a(href='#') Account 2
-			li.list-group-item: a(href='#') Account 3
-			li.list-group-item: a(href='#') Account 4
+			li.list-group-item(ng-repeat='account in accounts')
+				a(href='#/accounts/{{account.service}}/{{$index}}')
+					| {{ account.label }}
 
 		.panel-footer
 			strong Add Account:
-			a.btn.btn-link(href='#') GTalk
-			a.btn.btn-link(href='#') AOL
+			a.btn.btn-link(ng-repeat='(providerId, provider) in providers', href='#/accounts/{{providerId}}/-1')
+				| {{ provider.name }}
