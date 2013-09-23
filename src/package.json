@@ -10,6 +10,8 @@
 	"main": "index.html",
 	"window": {
 		"title": "Bond - Gold Edition",
+		"width": 1000,
+		"height": 700,
 		"min_width": 500,
 		"min_height": 400,
 		"toolbar": false,
