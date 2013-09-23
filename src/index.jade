@@ -7,7 +7,7 @@ html(lang='en', data-ng-app='bond')
 
 	body(ng-controller='MainCtrl', ng-class='{"contacts-bar-expanded": contactsBarExpanded, "settings-bar-expanded": settingsBarExpanded}')
 		#header
-			a#contacts-toggle.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleContacts()')
+			a#contacts-button.glyphicon.glyphicon-circle-arrow-right(href='', ng-click='toggleContacts()')
 			a#settings-button.glyphicon.glyphicon-cog(href='', ng-click='toggleSettings()')
 			h1 Bond Chat
 		ng-include(src='"partials/contacts-bar.html"')
