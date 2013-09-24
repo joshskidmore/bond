@@ -1,13 +1,14 @@
-function AccountCtrl($scope, $routeParams, $location, account) {
+function AccountCtrl($scope, account) {
 
-	var provider = account.providers[$routeParams.providerId],
-		index = +$routeParams.index;
+	var provider = account.getProvider('gtalknonoauth'),
+		index = -1;
+		// index = +$routeParams.index;
 
 	$scope.provider = provider;
 
 	if (index === -1) {
 		var newAccount = {
-			service: $routeParams.providerId
+			service: 'gtalknonoauth'
 		};
 
 		provider.configurableOptions.forEach(function(option) {

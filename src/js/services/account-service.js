@@ -12,6 +12,10 @@ function AccountService() {
 	this.accounts = this._readAccountsFromDisk();
 
 	this.providers = bondCore.providers.list();
+
+	this.getProvider = function(providerId) {
+		return bondCore.providers.get(providerId);
+	};
 }
 util.inherits(AccountService, EventEmitter);
 
