@@ -1,6 +1,7 @@
 
 var bondCore = require('../'),
-	accounts = {};
+	accounts = {},
+	bacon = require('baconjs');
 
 
 /**
@@ -32,8 +33,26 @@ exports.connect = function(accountConfig, cb) {
 	// initialize client (but not connect)
 	accounts[accountId] = new bondCore.providers.clients[accountConfig.service].Client(accountConfig);  // @todo - naive assumption this will work :)
 
-	return accounts[accountId].connect(function(e, account) {
-		return cb(null, accounts[accountId]);
+	return accounts[accountId].connect(function(e, client) {
+		// @todo - error handling
+
+
+
+		client.bondIncomingEventStream
+			//.filter(function(bondEvent) { return bondEvent.type === 'iq' })
+			.onValue(function(messageEvent) { 
+				console.log('incoming', messageEvent);
+			});
+
+
+
+		client.bondOutgoingEventStream
+			//.filter(function(bondEvent) { return bondEvent.type === 'activity' })
+			.onValue(function(messageEvent) { 
+				console.log('outgoing', messageEvent);
+			});
+
+		return cb(null);
 	});	
 };
 
