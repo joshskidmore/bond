@@ -27,3 +27,25 @@ a {
 		}
 	}
 }
+
+input[type='text'], input[type='password'] {
+	border: 1px solid #222;
+	border-style: solid;
+	padding: 3px 10px;
+	font-weight: lighter;
+	letter-spacing: 0.1em;
+	color: #eee;
+	background-color: #444;
+	border-radius: 8px;
+
+	&:focus {
+		outline: none;
+		background-color: #666;
+		border-color: #aaa;	
+	}
+
+	&[disabled] {
+		color: #999;
+		cursor: not-allowed;
+	}
+}

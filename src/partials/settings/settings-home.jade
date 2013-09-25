@@ -4,6 +4,4 @@
 		a.list-group-item(ng-repeat='account in accounts', ng-click='editAccount(account)', href='')
 			| {{ account.label }}
 	.panel-footer
-		strong Add Account:
-		a.btn.btn-link(ng-repeat='(providerId, provider) in providers', href='')
-			| {{ provider.name }}
+		a.btn.btn-primary(href='', ng-click='goToScreen("choose-provider")') Add Account

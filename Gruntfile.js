@@ -18,6 +18,13 @@ module.exports = function(grunt) {
 						dest: 'app/partials',
 						src: '*.jade',
 						ext: '.html'
+					},
+										{
+						expand: true,
+						cwd: 'src/partials/settings',
+						dest: 'app/partials/settings',
+						src: '*.jade',
+						ext: '.html'
 					}
 				]
 			}

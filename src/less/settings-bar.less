@@ -2,6 +2,65 @@
 	right:-@settings-bar-width;
 	width: @settings-bar-width;
 	.transition(width 0.3s ease, right 0.3s ease;);
+
+	.form-group {
+		margin-left: 0;
+		margin-right: 0;
+
+		label {
+			font-weight: normal;
+		}
+
+		.bond-field {
+			.clearfix();
+
+			input[type='text'], input[type='password'] {
+				float: left;
+				width: 70%;
+			}
+
+			.validation-message {
+				display: block;
+				float: left;
+				width: 30%;
+				padding-left: 10px;
+				line-height: 26px;
+				color: #666;
+			}
+		}
+
+		&.has-error {
+			label {
+				color: @text-color;
+			}
+
+			.validation-message {
+				color: @state-danger-text;
+			}
+		}
+	}
+
+	.checkbox {
+		margin-bottom: 10px;
+	}
+
+	.panel {
+		a.list-group-item {
+			padding: 8px 10px;
+			color: @link-color;
+			&:hover {
+				color: #eee;
+			}
+		}
+	}
+
+	.panel-footer {
+		.clearfix();
+		
+		.btn-danger {
+			float: right;
+		}
+	}
 }
 
 body.settings-bar-expanded {
@@ -9,6 +68,7 @@ body.settings-bar-expanded {
 		right: 0;
 	}
 }
+
 
 /*
 

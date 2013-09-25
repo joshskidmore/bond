@@ -1,0 +1,7 @@
+.panel.panel-default
+	.panel-heading: h3.panel-title Choose Provider
+	.list-group
+		a.list-group-item(ng-repeat='(providerId, provider) in providers', ng-click='newAccount(provider)', href='')
+			| {{ provider.name }}
+	.panel-footer
+		a.btn.btn-sm.btn-danger(type='submit', ng-click='goToScreen("home")') Cancel
