@@ -1,0 +1,7 @@
+#confirm-delete-account.panel.panel-default(ng-controller='AccountCtrl')
+	.panel-heading: h3.panel-title Delete Account
+	.panel-body
+		p Are you sure you want to delete this account ({{ currentAccount.label }})?
+	.panel-footer
+		a.btn.btn-sm.btn-danger.pull-left(href='', ng-click='deleteAccount(true)') Yes, Delete Account
+		a.btn.btn-sm.btn-default.pull-right(href='', ng-click='editAccount(currentAccount)') Cancel

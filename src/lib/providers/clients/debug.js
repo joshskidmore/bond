@@ -10,7 +10,7 @@ var bondCore = require('../../'),
 	_ = require('underscore'),
 	xmpp = require('node-xmpp');
 
-
+exports.id = 'debug';
 exports.name = 'Debugging/Null Provider';
 exports.description = 'Does not do anything!';
 exports.version = 0.1;

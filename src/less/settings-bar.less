@@ -52,14 +52,21 @@
 				color: #eee;
 			}
 		}
+
+		&#confirm-delete-account .panel-body {
+			padding: 30px 20px;
+			font-size: 1.1em;
+		}
 	}
 
 	.panel-footer {
 		.clearfix();
-		
-		.btn-danger {
-			float: right;
-		}
+	}
+
+	a.delete-account {
+		color: @state-danger-text;
+		float: right;
+		display: block;
 	}
 }
 
@@ -68,44 +75,3 @@ body.settings-bar-expanded {
 		right: 0;
 	}
 }
-
-
-/*
-
-.settings-container {
-	margin-top: 10px;
-	padding: 0 15px;
-}
-
-#account-form .form-group {
-	label {
-		text-align: right;
-		padding-right: 5px;
-		@media (max-width: @screen-xs-max) {
-			text-align: left;
-			margin-bottom: 5px;
-		}
-	}
-
-	input[type='text'] {
-		width: 100%;
-	}
-
-	.validation-message {
-		color: #666;
-		padding-left: 5px;
-	}
-
-	&.has-error {
-		label {
-			color: @text-color;
-		}
-
-		.validation-message {
-			color: @state-danger-text;
-		}
-	}
-}
-
-
-*/

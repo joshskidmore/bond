@@ -15,8 +15,10 @@ var fs = require('fs'),
 fs.readdirSync(__dirname)
 	.forEach(function(fileName) {
 		if (fileName === 'index.js')  return;
-		
-		var provider = providers[fileName.substr(0, fileName.length - 3).replace(/-/g,'')] = require('./' + fileName);
+
+		var provider = require('./' + fileName);
+
+		providers[provider.id] = provider;
 
 		requiredOptions.forEach(function(option) {
 			provider.configurableOptions.unshift(option);

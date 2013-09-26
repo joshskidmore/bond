@@ -1,18 +1,20 @@
 form#account-form.form-horizontal(ng-controller='AccountCtrl', name='accountForm', bootstrap-form-classes)
 	.panel.panel-default
-		.panel-heading: h3.panel-title Add/Edit Account
+		.panel-heading: h3.panel-title
+			| {{isNewAccount ? 'Create Account' : 'Edit Account'}}
+			a.delete-account(href='', ng-if='!isNewAccount', ng-click='deleteAccount()') Delete
 
 		.panel-body
 			div
 				.form-group
 					label(for='provider') Chat Provider:
 					.bond-field
-						input(type='text', id='provider', disabled, value='{{currentProvider.name}}')
-			div(ng-repeat='option in currentProvider.configurableOptions', ng-switch='option.type')
+						input(type='text', id='provider', disabled, value='{{provider.name}}')
+			div(ng-repeat='option in provider.configurableOptions', ng-switch='option.type')
 				.form-group(ng-switch-when='text')
 					label(for='{{option.key}}') {{option.label}}:
 					.bond-field
-						input(type='text', id='{{option.key}}', name='{{option.key}}', ng-model='currentAccount[option.key]', required, data-required='true', data-trigger='change focusout')
+						input(type='text', id='{{option.key}}', name='{{option.key}}', ng-model='account[option.key]', required)
 						span.validation-message Required
 				.form-group(ng-switch-when='password')
 					label(for='{{option.key}}') {{option.label}}:
@@ -21,10 +23,10 @@ form#account-form.form-horizontal(ng-controller='AccountCtrl', name='accountForm
 						span.validation-message Required
 				.checkbox(ng-switch-when='bool')
 					label
-						input(type='checkbox', name='{{option.key}}', ng-model='currentAccount[option.key]')
+						input(type='checkbox', name='{{option.key}}', ng-model='account[option.key]')
 						| {{option.label}}
 		.panel-footer
-			button.btn.btn-sm.btn-primary(type='submit', ng-disabled='accountForm.$invalid', ng-click='saveAccount()')
+			button.btn.btn-sm.btn-primary.pull-left(type='submit', ng-disabled='accountForm.$invalid', ng-click='saveAccount()')
 				| Save 
 				span.glyphicon.glyphicon-ok
-			a.btn.btn-sm.btn-danger(type='submit', ng-click='goToScreen("home")') Cancel
+			a.btn.btn-sm.btn-danger.pull-right(type='submit', ng-click='goToScreen("home")') Cancel

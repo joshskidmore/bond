@@ -1,35 +1,27 @@
 function AccountCtrl($scope, account) {
-
-	// var provider = account.getProvider('gtalknonoauth'),
-	// 	index = -1;
-	// 	// index = +$routeParams.index;
-
-	// $scope.provider = provider;
-
-	// if (index === -1) {
-	// 	var newAccount = {
-	// 		service: 'gtalknonoauth'
-	// 	};
-
-	// 	provider.configurableOptions.forEach(function(option) {
-	// 		newAccount[option.key] = option.default;
-	// 	});
-
-	// 	$scope.isNewAccount = true;
-	// 	$scope.account = newAccount;
-	// } else {
-	// 	$scope.isNewAccount = false;
-	// 	$scope.account = account.accounts[index];
-	// }
+	// grab convenience account and provider references from parent $scope
+	$scope.provider = $scope.currentProvider;
+	$scope.isNewAccount = !$scope.currentAccount;
+	$scope.account = $scope.currentAccount || {};
 
 	$scope.saveAccount = function() {
-		// @todo - missing validation and notification
-
-		if ($scope.isNewAccount)
-		 	account.accounts.push(newAccount);
+		if ($scope.isNewAccount) {
+			$scope.account.service = $scope.provider.id;
+		 	account.accounts.push($scope.account);
+		 }
 
 		account.saveAccounts();
-		$location.path('/settings');
+		$scope.goToScreen('home');
 	}
 
+	$scope.deleteAccount = function(confirmed) {
+		if (!confirmed) {
+			$scope.goToScreen('confirm-delete-account');
+		} else {
+			var index = $scope.accounts.indexOf($scope.account);
+			$scope.accounts.splice(index, 1);
+			account.saveAccounts();
+			$scope.goToScreen('home');
+		}
+	};
 }

@@ -7,12 +7,14 @@ function SettingsCtrl($scope, account) {
 	var settingsScreens = {
 		'home': 'partials/settings/settings-home.html',
 		'choose-provider': 'partials/settings/choose-provider.html',
-		'edit-account': 'partials/settings/account.html'
+		'edit-account': 'partials/settings/account.html',
+		'confirm-delete-account': 'partials/settings/confirm-delete-account.html'
 	};
 
 	$scope.goToScreen = function(screen) {
-		if(screen !== 'edit-account') {
-			// clear some state
+		// hacky check to see if we're moving away from an account screen and need
+		// to clear some state.
+		if(!/account/.test(screen)) {
 			$scope.currentAccount = $scope.currentProvider = null;
 		}
 		$scope.currentSettingsScreen = settingsScreens[screen];
