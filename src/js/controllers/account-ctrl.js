@@ -1,4 +1,4 @@
-function AccountCtrl($scope, account) {
+function AccountCtrl($scope, accountSettings) {
 	// grab convenience account and provider references from parent $scope
 	$scope.provider = $scope.currentProvider;
 	$scope.isNewAccount = !$scope.currentAccount;
@@ -7,10 +7,10 @@ function AccountCtrl($scope, account) {
 	$scope.saveAccount = function() {
 		if ($scope.isNewAccount) {
 			$scope.account.service = $scope.provider.id;
-		 	account.accounts.push($scope.account);
+		 	accountSettings.accounts.push($scope.account);
 		 }
 
-		account.saveAccounts();
+		accountSettings.saveAccounts();
 		$scope.goToScreen('home');
 	}
 
@@ -20,7 +20,7 @@ function AccountCtrl($scope, account) {
 		} else {
 			var index = $scope.accounts.indexOf($scope.account);
 			$scope.accounts.splice(index, 1);
-			account.saveAccounts();
+			accountSettings.saveAccounts();
 			$scope.goToScreen('home');
 		}
 	};

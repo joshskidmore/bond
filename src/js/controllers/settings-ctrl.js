@@ -1,4 +1,4 @@
-function SettingsCtrl($scope, account) {
+function SettingsCtrl($scope, accountSettings) {
 
 	//
 	// settings navigation
@@ -27,14 +27,14 @@ function SettingsCtrl($scope, account) {
 	// account management
 	// 
 
-	$scope.accounts = account.accounts;
-	$scope.providers = account.providers;
+	$scope.accounts = accountSettings.accounts;
+	$scope.providers = accountSettings.providers;
 	$scope.currentAccount = null;
 	$scope.currentProvider = null;
 
 	$scope.editAccount = function(acct) {
 		$scope.currentAccount = acct;
-		$scope.currentProvider = account.getProvider(acct.service);
+		$scope.currentProvider = accountSettings.getProvider(acct.service);
 		$scope.goToScreen('edit-account');
 	};
 

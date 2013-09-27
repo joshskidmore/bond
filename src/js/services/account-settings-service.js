@@ -5,7 +5,7 @@ var util = require('util'),
 	CURRENT_FILE_VERSION = 1;
 
 
-function AccountService() {
+function AccountSettingsService() {
 	EventEmitter.call(this);
 
 	// todo: this should probably be in a try/catch. Not sure how to surface errors
@@ -18,12 +18,12 @@ function AccountService() {
 		return bondCore.providers.get(providerId);
 	};
 }
-util.inherits(AccountService, EventEmitter);
+util.inherits(AccountSettingsService, EventEmitter);
 
 /**
  * Fetches the accounts data directly from disk (intended for internal use only).
  */
-AccountService.prototype._readAccountsFromDisk = function() {
+AccountSettingsService.prototype._readAccountsFromDisk = function() {
 	var rawData = userData.readFileSync('accounts.json');
 
 	if (!rawData || !rawData.length) return [];
@@ -40,7 +40,7 @@ AccountService.prototype._readAccountsFromDisk = function() {
 /**
  * Syncs the accounts array back to disk.
  */
-AccountService.prototype.saveAccounts = function() {
+AccountSettingsService.prototype.saveAccounts = function() {
 	encodePasswords(this.accounts);
 
 	var data = {
@@ -58,7 +58,7 @@ AccountService.prototype.saveAccounts = function() {
 	decodePasswords(this.accounts);
 };
 
-bond.service('account', AccountService);
+bond.service('accountSettings', AccountSettingsService);
 
 function encodePasswords(accounts) {
 	accounts.forEach(function(account) {
