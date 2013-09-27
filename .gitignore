@@ -4,6 +4,9 @@
 *.swp
 *.out
 Thumbs.db
+# Sublime Settings
+*.sublime-project
+*.sublime-workspace
 
 # Node / NPM
 node_modules
