@@ -1,7 +1,8 @@
 var util = require('util'),
 	EventEmitter = require('events').EventEmitter,
 	bondCore = require('./lib'),
-	userData = bondCore.userData;
+	userData = bondCore.userData,
+	CURRENT_FILE_VERSION = 1;
 
 
 function AccountService() {
@@ -27,18 +28,46 @@ AccountService.prototype._readAccountsFromDisk = function() {
 
 	if (!rawData || !rawData.length) return [];
 
-	return JSON.parse(rawData);
+	// todo: try/catc - need to figure out how to surface errors though
+	var data = JSON.parse(rawData),
+		accounts = data.accounts || [];
+
+	decodePasswords(accounts);
+
+	return accounts;
 };
 
 /**
  * Syncs the accounts array back to disk.
  */
 AccountService.prototype.saveAccounts = function() {
-	var strAccounts = angular.toJson(this.accounts, true);
+	encodePasswords(this.accounts);
+
+	var data = {
+		version: CURRENT_FILE_VERSION,
+		accounts: this.accounts
+	};
+
+	var strAccounts = angular.toJson(data, true);
 
 	// todo: same as above... needs a try/catch, but don't know what to do once
 	// we have the error.
 	userData.writeFileSync('accounts.json', strAccounts);
+
+	// decode passwords again for anyone who still has an in-memory reference
+	decodePasswords(this.accounts);
 };
 
 bond.service('account', AccountService);
+
+function encodePasswords(accounts) {
+	accounts.forEach(function(account) {
+		account.password = new Buffer(account.password).toString('base64');
+	});
+}
+
+function decodePasswords(accounts) {
+	accounts.forEach(function(account) {
+		account.password = new Buffer(account.password, 'base64').toString('utf8');
+	});
+}
