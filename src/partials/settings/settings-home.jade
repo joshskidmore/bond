@@ -3,5 +3,6 @@
 	.list-group
 		a.list-group-item(ng-repeat='account in accounts', ng-click='editAccount(account)', href='')
 			| {{ account.label }}
+		li.list-group-item(ng-if='accounts.length === 0') No accounts yet.
 	.panel-footer
 		a.btn.btn-sm.btn-primary(href='', ng-click='goToScreen("choose-provider")') Add Account
