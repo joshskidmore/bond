@@ -1,2 +1,0 @@
-
-exports.GTalk = require('./gtalk');
