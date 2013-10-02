@@ -1,8 +1,9 @@
 var util = require('util'),
 	EventEmitter = require('events').EventEmitter;
 
-function ContactService() {
+function ContactService(accounts) {
 	EventEmitter.call(this);
+
 }
 util.inherits(ContactService, EventEmitter);
 

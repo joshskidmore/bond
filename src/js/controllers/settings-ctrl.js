@@ -34,7 +34,7 @@ function SettingsCtrl($scope, accountSettings) {
 
 	$scope.editAccount = function(acct) {
 		$scope.currentAccount = acct;
-		$scope.currentProvider = accountSettings.getProvider(acct.service);
+		$scope.currentProvider = accountSettings.getProvider(acct.providerId);
 		$scope.goToScreen('edit-account');
 	};
 

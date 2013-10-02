@@ -1,3 +1,4 @@
-function ContactsCtrl($scope, contact) {
-	$scope.contacts = contact.getOnlineContacts();
+function ContactsCtrl($scope) {
+	$scope.contacts = [];
+	// $scope.contacts = contact.getOnlineContacts();
 }

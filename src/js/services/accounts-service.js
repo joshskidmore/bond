@@ -1,9 +1,13 @@
-var bondCore = require('./lib');
-
 function AccountService(accountSettings) {
-	console.log(accountSettings);
-	// bondCore._accounts = JSON.parse( bondCore.userData.readFileSync('accounts.json') );
-	// theClient = bondCore.accounts.connect(bondCore._accounts[0]);
+
+	// accountSettings.accounts.filter(function(account) {
+	// 	return account.connectOnStartup;
+	// }).forEach(function(account) {
+	// 	var client = bondCore.accounts.connect(account);
+	// 	console.log(client);
+	// 	window.client = client;
+	// });
+
 }
 
 bond.service('accounts', AccountService);

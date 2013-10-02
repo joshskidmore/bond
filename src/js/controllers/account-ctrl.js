@@ -1,12 +1,13 @@
 function AccountCtrl($scope, accountSettings) {
 	// grab convenience account and provider references from parent $scope
 	$scope.provider = $scope.currentProvider;
+	$scope.options = $scope.provider.getOptionsAsList();
 	$scope.isNewAccount = !$scope.currentAccount;
 	$scope.account = $scope.currentAccount || {};
 
 	$scope.saveAccount = function() {
 		if ($scope.isNewAccount) {
-			$scope.account.service = $scope.provider.id;
+			$scope.account.providerId = $scope.provider.id;
 		 	accountSettings.accounts.push($scope.account);
 		 }
 

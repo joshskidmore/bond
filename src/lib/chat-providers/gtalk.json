@@ -1,0 +1,31 @@
+{
+	"id": "gtalk",
+	"name": "GTalk",
+	"options": {
+		"label": {
+			"type": "text",
+			"default": "Google Talk",
+			"label": "Account Label"
+		},
+		"username": {
+			"type": "text",
+			"default": "",
+			"label": "Username"
+		},
+		"password": {
+			"type": "password",
+			"default": "",
+			"label": "Password"
+		},
+		"connectOnStartup": {
+			"type": "bool",
+			"default": true,
+			"label": "Connect On Startup"
+		},
+		"reconnect": {
+			"type": "bool",
+			"default": true,
+			"label": "Automatically Reconnect"
+		}
+	}
+}

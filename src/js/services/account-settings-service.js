@@ -1,24 +1,19 @@
 var util = require('util'),
-	EventEmitter = require('events').EventEmitter,
-	bondCore = require('./lib'),
-	userData = bondCore.userData,
+	userData = require('./lib/user-data'),
+	providers = require('./lib/providers'),
 	CURRENT_FILE_VERSION = 1;
 
-
 function AccountSettingsService() {
-	EventEmitter.call(this);
-
 	// todo: this should probably be in a try/catch. Not sure how to surface errors
 	// outside of the service though...
 	this.accounts = this._readAccountsFromDisk();
 
-	this.providers = bondCore.providers.list();
+	this.providers = providers;
 
 	this.getProvider = function(providerId) {
-		return bondCore.providers.get(providerId);
+		return this.providers[providerId];
 	};
 }
-util.inherits(AccountSettingsService, EventEmitter);
 
 /**
  * Fetches the accounts data directly from disk (intended for internal use only).

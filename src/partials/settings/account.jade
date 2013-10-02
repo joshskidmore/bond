@@ -10,21 +10,21 @@ form#account-form.form-horizontal(ng-controller='AccountCtrl', name='accountForm
 					label(for='provider') Chat Provider:
 					.bond-field
 						input(type='text', id='provider', disabled, value='{{provider.name}}')
-			div(ng-repeat='option in provider.configurableOptions', ng-switch='option.type')
+			div(ng-repeat='opt in options', ng-switch='opt.type')
 				.form-group(ng-switch-when='text')
-					label(for='{{option.key}}') {{option.label}}:
+					label(for='{{opt.key}}') {{opt.label}}:
 					.bond-field
-						input(type='text', id='{{option.key}}', name='{{option.key}}', ng-model='account[option.key]', required)
+						input(type='text', id='{{opt.key}}', name='{{opt.key}}', ng-model='account[opt.key]', required)
 						span.validation-message Required
 				.form-group(ng-switch-when='password')
-					label(for='{{option.key}}') {{option.label}}:
+					label(for='{{opt.key}}') {{opt.label}}:
 					.bond-field
-						input(type='password', id='{{option.key}}', name='{{option.key}}', ng-model='account[option.key]', required)
+						input(type='password', id='{{opt.key}}', name='{{opt.key}}', ng-model='account[opt.key]', required)
 						span.validation-message Required
 				.checkbox(ng-switch-when='bool')
 					label
-						input(type='checkbox', name='{{option.key}}', ng-model='account[option.key]')
-						| {{option.label}}
+						input(type='checkbox', name='{{opt.key}}', ng-model='account[opt.key]')
+						| {{opt.label}}
 		.panel-footer
 			button.btn.btn-sm.btn-primary.pull-left(type='submit', ng-disabled='accountForm.$invalid', ng-click='saveAccount()')
 				| Save 
