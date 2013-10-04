@@ -1,11 +1,7 @@
-var util = require('util'),
-	EventEmitter = require('events').EventEmitter;
+var util = require('util');
 
 function ContactService(accounts) {
-	EventEmitter.call(this);
-
 }
-util.inherits(ContactService, EventEmitter);
 
 ContactService.prototype.getOnlineContacts = function() {
 	return [

@@ -27,5 +27,9 @@
 			"default": true,
 			"label": "Automatically Reconnect"
 		}
+	},
+	"xmpp": {
+		"host": "talk.google.com",
+		"port": 5222
 	}
 }

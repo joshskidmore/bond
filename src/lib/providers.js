@@ -7,6 +7,7 @@ function ChatProvider(config) {
 	this.id = config.id;
 	this.name = config.name;
 	this.options = config.options;
+	this.xmppSettings = config.xmpp;
 }
 
 ChatProvider.prototype.getOptionsAsList = function() {
@@ -23,16 +24,13 @@ ChatProvider.prototype.getOptionsAsList = function() {
 };
 
 function getChatProviders() {
-	var providers = {};
-
-	fs.readdirSync(path.resolve(__dirname, 'chat-providers'))
+	return fs.readdirSync(path.resolve(__dirname, 'chat-providers'))
 		.map(function(fileName) {
 			return fs.readFileSync(path.resolve(__dirname, 'chat-providers', fileName), 'utf8');
 		}).map(function(providerJson) {
 			return JSON.parse(providerJson);
-		}).forEach(function(providerConfig) {
+		}).reduce(function(providers, providerConfig) {
 			providers[providerConfig.id] = new ChatProvider(providerConfig);
-		});
-
-	return providers;
+			return providers;
+		}, {});
 }

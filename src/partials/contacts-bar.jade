@@ -1,6 +1,9 @@
 #contacts-bar.side-bar(ng-controller='ContactsCtrl')
 	h3 Contacts
 
-	a(href='', ng-repeat='contact in contacts')
-		i.glyphicon.glyphicon-user
-		span {{ contact.name }}
+	.panel.panel-default(ng-repeat='account in accounts')
+		.panel-heading: h3.panel-title {{ account.options.label }}
+		.panel-body
+			a(href='', ng-repeat='contact in contacts')
+				i.glyphicon.glyphicon-user
+				span {{ contact.name }}
