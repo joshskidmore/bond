@@ -3,18 +3,28 @@
 	width: @contacts-bar-width;
 	.transition(width 0.3s ease, left 0.3s ease;);
 
-	> a {
+	.buddy {
 		display: block;
 		color: #eee;
+		border-left: 4px solid #444;
 		font-size: 13px;
 		font-weight: 200;
 		letter-spacing: .1em;
 		white-space: nowrap;
-		padding: 0 12px;
+		margin: 0 0 2px 10px;
+		padding: 0 12px 0 8px;
 		line-height: 20px;
-		position: relative;
-		left: 0;
-		.transition(left 0.15s ease;);
+		// position: relative;
+		// left: 0;
+		// .transition(left 0.15s ease;);
+
+		&.buddy-state-online {
+			border-color: #47db47;
+		}
+
+		&.buddy-state-away {
+			border-color: #d8b134;
+		}
 
 		&:hover {
 			text-decoration: none;
@@ -24,12 +34,6 @@
 		&:active {
 			background: @body-bg;
 			color: @link-hover-color;
-		}
-
-		i {
-			font-size: 12px;
-			line-height: inherit;
-			margin: 0 8px 0 0;
 		}
 	}
 }
