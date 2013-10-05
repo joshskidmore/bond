@@ -1,5 +1,5 @@
-function ContactsCtrl($scope, accounts, contact) {
-	$scope.accounts = accounts.accounts;
-	$scope.contacts = contact.getOnlineContacts();
+function ContactsCtrl($scope, contact) {
+	// $scope.accounts = accounts.accounts;
+	$scope.contacts = contact.contacts;
 	// $scope.contacts = contact.getOnlineContacts();
 }
