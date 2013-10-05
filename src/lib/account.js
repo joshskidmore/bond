@@ -53,10 +53,10 @@ function Account(config) {
 	});
 }
 
-Account.prototype.pushEvent = function(evtName, data) {
+Account.prototype.pushEvent = function(type, data) {
 	data || (data = {});
 	data.jid = this.jid;
-	data.event = evtName;
+	data.type = type;
 	this.readStream.push(data);
 };
 
