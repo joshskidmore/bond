@@ -1,6 +1,6 @@
 #contacts-bar.side-bar(ng-controller='ContactsCtrl')
 	h3 Contacts
 
-	a.buddy(href='', ng-class='"buddy-state-"+contact.state', ng-repeat='contact in contacts')
+	a.buddy(href='', ng-class='"buddy-state-"+contact.state', ng-repeat='contact in contacts | orderBy:stateAndNameSortValue')
 		span {{ contact.jid }}
 
