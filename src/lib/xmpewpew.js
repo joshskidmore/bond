@@ -8,6 +8,9 @@ var curId = 0,
 
 // todo: handle disconnects (intentional and incidental) and reconnects
 
+/**
+ * Constructs a new XMPewPew instance.
+ */
 function XMPewPew(opts) {
 	EventEmitter.call(this);
 
@@ -23,6 +26,7 @@ function XMPewPew(opts) {
 
 	// various state trackers
 	this.isConnected = false;
+	this.rosterPending = false;
 
 	// a list of commands waiting to be executed once a connection is
 	// (re)established
@@ -31,6 +35,11 @@ function XMPewPew(opts) {
 }
 util.inherits(XMPewPew, EventEmitter);
 
+/**
+ * Uses the connection info provided to the constructor to create an actual
+ * connection.  Once the connection is established, an 'online' event will be
+ * emitted.
+ */
 XMPewPew.prototype.connect = function() {
 	var self = this;
 
@@ -52,12 +61,46 @@ XMPewPew.prototype.connect = function() {
 
 		self.processQueuedCommands();
 	});
+
+	conn.on('stanza', this.handleStanza.bind(this));
 };
 
-XMPewPew.prototype.getRoster = function(cb) {
-	var roster = this.createRosterElement();
+/**
+ * Causes a roster request to be initiated.  Once the roster is returned, a
+ * 'roster' event will be emitted.  If a roster request is already pending, then
+ * no new request will be created.
+ */
+XMPewPew.prototype.getRoster = function() {
+	var self = this;
+	this.whenReady(function() {
+		if (self.rosterPending) return;
+		self.conn.send(self.createRosterElement());
+	});
+};
 
-	conn.send(roster);
+/**
+ * Essentially a dispatch method for incoming node-xmpp stanzas.  This will emit
+ * a 'stanza' event, and then forward the stanza to a more specific method to be
+ * handled.
+ */
+XMPewPew.prototype.handleStanza = function(stanza) {
+	// emit the raw stanza
+	this.emit('stanza', stanza);
+
+	if (stanza.is('iq')) {
+		this.handleIQStanza(stanza);
+	} else if (stanza.is('presence')) {
+		console.log("PRESENCE STANZAS NOT YET IMPLEMENTED", stanza);
+	} else if (stanza.is('message')) {
+		console.log("MESSAGE STANZAS NOT YET IMPLEMENTED", stanza);
+	}
+};
+
+/**
+ * Handles incoming 'iq' stanzas.
+ */
+XMPewPew.prototype.handleIQStanza = function(iq) {
+	console.log("IQ", iq);
 };
 
 /**
