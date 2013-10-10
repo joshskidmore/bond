@@ -87,20 +87,40 @@ XMPewPew.prototype.handleStanza = function(stanza) {
 	// emit the raw stanza
 	this.emit('stanza', stanza);
 
-	if (stanza.is('iq')) {
-		this.handleIQStanza(stanza);
-	} else if (stanza.is('presence')) {
-		console.log("PRESENCE STANZAS NOT YET IMPLEMENTED", stanza);
-	} else if (stanza.is('message')) {
-		console.log("MESSAGE STANZAS NOT YET IMPLEMENTED", stanza);
+	switch (stanza.name) {
+		case 'iq':
+			if (/^roster/.test(stanza.attrs.id)) {
+				this.handleRosterStanza(stanza);
+			}
+			break;
+		case 'presence':
+
+			break;
+		case 'message':
+
+			break;
+		default:
+			console.log('Unrecognized stanza:', stanza);
 	}
 };
 
 /**
- * Handles incoming 'iq' stanzas.
+ * Handles incoming roster stanza
  */
-XMPewPew.prototype.handleIQStanza = function(iq) {
-	console.log("IQ", iq);
+XMPewPew.prototype.handleRosterStanza = function(stanza) {
+	var roster = stanza.getChild('query').children.map(function(item) {
+		var jid = item.attrs.jid,
+			groupTag = item.getChild('group');
+
+		return {
+			jid: jid,
+			name: item.attrs.name || jid,
+			subscription: item.attrs.subscription,
+			group: groupTag ? groupTag.children[0] : null
+		};
+	});
+
+	this.emit('roster', roster);
 };
 
 /**
