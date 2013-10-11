@@ -1,5 +1,5 @@
 function ContactsCtrl($scope, contact) {
-	$scope.contacts = contact.contacts;
+	$scope.roster = contact.roster;
 	
 	$scope.stateAndNameSortValue = function(contact) {
 		var sortVal = '';
