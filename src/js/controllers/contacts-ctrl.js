@@ -22,7 +22,7 @@ function ContactsCtrl($scope, contact) {
 				break;
 		}
 
-		sortVal += contact.jid;
+		sortVal += contact.name;
 
 		return sortVal;
 	};
