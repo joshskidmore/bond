@@ -86,7 +86,7 @@ XMPewPew.prototype.getRoster = function() {
 XMPewPew.prototype.handleStanza = function(stanza) {
 	// emit the raw stanza
 	this.emit('stanza', stanza);
-
+	
 	switch (stanza.name) {
 		case 'iq':
 			if (/^roster/.test(stanza.attrs.id)) {
@@ -94,7 +94,19 @@ XMPewPew.prototype.handleStanza = function(stanza) {
 			}
 			break;
 		case 'presence':
-
+			switch (stanza.attrs.type) {
+				case 'subscribe':
+					// todo
+					break;
+				case 'unsubscribe':
+					// todo
+					break;
+				case undefined:
+					this.handlePresenceStatusStanza(stanza);
+					break;
+				default:
+					// todo: not sure if this is reachable...
+			}
 			break;
 		case 'message':
 
@@ -121,6 +133,25 @@ XMPewPew.prototype.handleRosterStanza = function(stanza) {
 	});
 
 	this.emit('roster', roster);
+};
+
+/**
+ * Handles incoming presence/status stanzas
+ */
+XMPewPew.prototype.handlePresenceStatusStanza = function(stanza) {
+	var jid = stanza.attrs.from,
+		statusText = stanza.getChildText('status') || '',
+		state = stanza.getChildText('show') || 'online';
+
+	// normalize state
+	state === 'chat' && (state = 'online');
+	stanza.attrs.type === 'unavailable' && (state = 'offline');
+
+	this.emit('buddy-state', {
+		jid: jid,
+		statusText: statusText,
+		state: state
+	});
 };
 
 /**
