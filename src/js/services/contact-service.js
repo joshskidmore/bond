@@ -1,8 +1,6 @@
 var util = require('util');
 
 function ContactService(accounts) {
-	var self = this;
-
 	this.roster = [];
 	this._rosterMap = {};
 
@@ -14,9 +12,11 @@ function ContactService(accounts) {
 	
 	accounts.readStream.filter(function(event) {
 		return event.type === 'roster';
-	}).onValue(function(event) {
-		self.handleRosterEvent(event);
-	});
+	}).onValue(this.handleRosterEvent.bind(this));
+
+	accounts.readStream.filter(function(event) {
+		return event.type === 'buddy-state'
+	}).onValue(this.handleBuddyStateEvent.bind(this));
 }
 
 ContactService.prototype.handleRosterEvent = function(event) {
@@ -28,9 +28,22 @@ ContactService.prototype.handleRosterEvent = function(event) {
 	event.data.forEach(function(contact) {
 		contact.state = 'offline';
 		contact.statusText = '';
-		self._rosterMap[contact.jid];
+		self._rosterMap[contact.jid] = contact;
 		self.roster.push(contact);
 	});
+};
+
+ContactService.prototype.handleBuddyStateEvent = function(event) {
+	var self = this,
+		jid = event.data.jid;
+
+	var contact = this._rosterMap[jid];
+	if (!contact) {
+		console.log('Buddy state received, but jid not in roster', jid);
+		return;
+	}
+	contact.statusText = event.data.statusText;
+	contact.state = event.data.state;
 };
 
 // ContactService.prototype.handleBuddyEvent = function(event) {
