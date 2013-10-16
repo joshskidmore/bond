@@ -24,6 +24,10 @@ function Account(config) {
 		self.pushEvent('roster', roster);
 	});
 
+	xmpp.on('buddy-state', function(buddyState) {
+		self.pushEvent('buddy-state', buddyState);
+	});
+
 	xmpp.on('stanza', function(stanza) {
 		// console.log("STANZA: " + stanza.name);
 		// console.log(stanza);
