@@ -1,14 +1,16 @@
-var providers = require('./providers'),
-	Bacon = require('baconjs').Bacon,
+var EventEmitter = require('events').EventEmitter,
+	util = require('util'),
+	providers = require('./providers'),
 	XMPewPew = require('./xmpewpew');
 
 function Account(config) {
+	EventEmitter.call(this);
+
 	var self = this;
 
 	this.options = config;
 	this.jid = this.options.username;
 	this.provider = providers[this.options.providerId];
-	this.readStream = new Bacon.Bus();
 
 	// set up our XMPewPew instance
 	var xmpp = this.xmpp = new XMPewPew(this.getConnectionOptions());
@@ -16,21 +18,8 @@ function Account(config) {
 	// automatically fetch roster
 	xmpp.getRoster();
 
-	xmpp.on('online', function() {
-		self.pushEvent('online');
-	});
-
-	xmpp.on('roster', function(roster) {
-		self.pushEvent('roster', roster);
-	});
-
-	xmpp.on('buddy-state', function(buddyState) {
-		self.pushEvent('buddy-state', buddyState);
-	});
-
-	xmpp.on('stanza', function(stanza) {
-		// console.log("STANZA: " + stanza.name);
-		// console.log(stanza);
+	['online', 'roster', 'buddy-state', 'stanza'].forEach(function(evtName) {
+		xmpp.on(evtName, self.wrappedEmit.bind(self, evtName));
 	});
 
 	// xmpp.on('close', function() {
@@ -66,10 +55,10 @@ function Account(config) {
 	// 	self.pushEvent('error', { err: err });
 	// });
 }
+util.inherits(Account, EventEmitter);
 
-Account.prototype.pushEvent = function(type, data) {
-	this.readStream.push({
-		type: type,
+Account.prototype.wrappedEmit = function(evtName, data) {
+	this.emit(evtName, {
 		accountJid: this.jid,
 		data: data
 	});

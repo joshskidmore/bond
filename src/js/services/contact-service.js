@@ -4,19 +4,9 @@ function ContactService(accounts) {
 	this.roster = [];
 	this._rosterMap = {};
 
-	// accounts.readStream.filter(function(event) {
-	// 	return event.type === 'buddy';
-	// }).onValue(function(event) {
-	// 	self.handleBuddyEvent(event);
-	// });
-	
-	accounts.readStream.filter(function(event) {
-		return event.type === 'roster';
-	}).onValue(this.handleRosterEvent.bind(this));
+	accounts.on('roster', this.handleRosterEvent.bind(this));
 
-	accounts.readStream.filter(function(event) {
-		return event.type === 'buddy-state'
-	}).onValue(this.handleBuddyStateEvent.bind(this));
+	accounts.on('buddy-state', this.handleBuddyStateEvent.bind(this));
 }
 
 ContactService.prototype.handleRosterEvent = function(event) {

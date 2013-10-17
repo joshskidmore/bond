@@ -1,19 +1,23 @@
-var Account = require('./lib/account'),
-	Bacon = require('baconjs').Bacon;
+var EventEmitter = require('events').EventEmitter,
+	util = require('util'),
+	Account = require('./lib/account');
 
 function AccountService(accountSettings) {
-	var self = this;
+	EventEmitter.call(this);
 
-	this.readStream = new Bacon.Bus();
+	var self = this;
 
 	this.accounts = accountSettings.accounts.map(function(config) {
 		return new Account(config);
 	});
 
 	this.accounts.forEach(function(account) {
-		self.readStream.plug(account.readStream);
+		['online', 'roster', 'buddy-state', 'stanza'].forEach(function(evtName) {
+			account.on(evtName, self.emit.bind(self, evtName));
+		});
 		account.options.connectOnStartup && account.connect();
 	});
 }
+util.inherits(AccountService, EventEmitter);
 
 bond.service('accounts', AccountService);
