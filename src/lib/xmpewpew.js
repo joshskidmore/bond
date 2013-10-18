@@ -139,7 +139,9 @@ XMPewPew.prototype.handleRosterStanza = function(stanza) {
  * Handles incoming presence/status stanzas
  */
 XMPewPew.prototype.handlePresenceStatusStanza = function(stanza) {
-	var jid = stanza.attrs.from,
+	var fromParts = stanza.attrs.from.split('/'),
+		jid = fromParts[0],
+		clientId = fromParts[1],
 		statusText = stanza.getChildText('status') || '',
 		state = stanza.getChildText('show') || 'online';
 
@@ -149,6 +151,7 @@ XMPewPew.prototype.handlePresenceStatusStanza = function(stanza) {
 
 	this.emit('buddy-state', {
 		jid: jid,
+		clientId: clientId,
 		statusText: statusText,
 		state: state
 	});
