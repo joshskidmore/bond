@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter,
 function ContactService(accounts) {
 	EventEmitter.call(this);
 
-	this.roster = [];
+	this.groups = [];
 	this._rosterMap = {};
 
 	accounts.on('roster', this.handleRosterEvent.bind(this));
@@ -16,7 +16,7 @@ util.inherits(ContactService, EventEmitter);
 ContactService.prototype.handleRosterEvent = function(event) {
 	var self = this;
 
-	this.roster.length = 0;
+	this.groups.length = 0;
 	this._rosterMap = {};
 
 	event.data.forEach(function(contact) {
@@ -24,7 +24,7 @@ ContactService.prototype.handleRosterEvent = function(event) {
 		contact.statusText = '';
 		contact.clients = {};
 		self._rosterMap[contact.jid] = contact;
-		self.roster.push(contact);
+		self.getGroup(contact.group).contacts.push(contact);
 	});
 
 	this.emit('roster-change');
@@ -46,8 +46,6 @@ ContactService.prototype.handleBuddyStateEvent = function(event) {
 		state: event.data.state
 	};
 
-	console.log(contact.name, jid, JSON.stringify(contact.clients, null, 4));
-
 	// determine which client's state/statusText to display at contact level
 	var topClient = Object.keys(contact.clients).map(function(id) {
 		return contact.clients[id];
@@ -64,13 +62,23 @@ ContactService.prototype.handleBuddyStateEvent = function(event) {
 	this.emit('roster-change');
 };
 
+ContactService.prototype.getGroup = function(groupName) {
+	for (var i = 0, len = this.groups.length; i < len; i++) {
+		var group = this.groups[i];
+		if (group.name === groupName) return group;
+	}
+	var newGroup = { name: groupName, contacts: []};
+	this.groups.push(newGroup);
+	return newGroup;
+};
+
 ContactService.getStateScore = function(state) {
 	if (state === 'online') return 10;
 	if (state === 'away') return 9;
 	if (state === 'dnd') return 8;
 	if (state === 'offline') return 7;
 	return 0;
-}
+};
 
 // ContactService.prototype.handleBuddyEvent = function(event) {
 // 	var contact = this._contactsMap[event.from];

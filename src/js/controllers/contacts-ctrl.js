@@ -1,5 +1,5 @@
 function ContactsCtrl($scope, contact) {
-	$scope.roster = contact.roster;
+	$scope.groups = contact.groups;
 
 	contact.on('roster-change', $scope.$apply.bind($scope));
 	
