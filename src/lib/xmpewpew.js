@@ -109,11 +109,36 @@ XMPewPew.prototype.handleStanza = function(stanza) {
 			}
 			break;
 		case 'message':
-
+			switch (stanza.attrs.type) {
+				case 'chat':
+					this.handleChatStanza(stanza);
+					break;
+				case 'groupchat':
+					// todo
+					break;
+				default:
+					// todo: not sure if this is reachable...
+			}
 			break;
 		default:
 			console.log('Unrecognized stanza:', stanza);
 	}
+};
+
+/**
+ * Handles incoming chat stanzas
+ */
+XMPewPew.prototype.handleChatStanza = function(stanza) {
+	var body = stanza.getChild('body'),
+		fromParts = fromParts = stanza.attrs.from.split('/');
+
+	if (!body) return;
+	
+	this.emit('chat', {
+		jid: fromParts[0],
+		clientId: fromParts[1],
+		message: body.getChildText()
+	});
 };
 
 /**
