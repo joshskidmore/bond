@@ -18,7 +18,7 @@ function Account(config) {
 	// automatically fetch roster
 	xmpp.getRoster();
 
-	['online', 'roster', 'buddy-state', 'stanza'].forEach(function(evtName) {
+	['online', 'roster', 'buddy-state', 'chat', 'stanza'].forEach(function(evtName) {
 		xmpp.on(evtName, self.wrappedEmit.bind(self, evtName));
 	});
 
