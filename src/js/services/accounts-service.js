@@ -12,7 +12,7 @@ function AccountService(accountSettings) {
 	});
 
 	this.accounts.forEach(function(account) {
-		['online', 'roster', 'buddy-state', 'stanza'].forEach(function(evtName) {
+		['online', 'roster', 'buddy-state', 'chat', 'stanza'].forEach(function(evtName) {
 			account.on(evtName, self.emit.bind(self, evtName));
 		});
 		account.options.connectOnStartup && account.connect();
