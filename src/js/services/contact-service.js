@@ -62,6 +62,10 @@ ContactService.prototype.handleBuddyStateEvent = function(event) {
 	this.emit('roster-change');
 };
 
+ContactService.prototype.getContact = function(jid) {
+	return this._rosterMap[jid] || null;
+};
+
 ContactService.prototype.getGroup = function(groupName) {
 	for (var i = 0, len = this.groups.length; i < len; i++) {
 		var group = this.groups[i];
