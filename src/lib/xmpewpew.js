@@ -133,11 +133,12 @@ XMPewPew.prototype.handleChatStanza = function(stanza) {
 		fromParts = fromParts = stanza.attrs.from.split('/');
 
 	if (!body) return;
-	
+
+	console.log('chat message', body.getText());
 	this.emit('chat', {
 		jid: fromParts[0],
 		clientId: fromParts[1],
-		message: body.getChildText()
+		message: body.getText()
 	});
 };
 
