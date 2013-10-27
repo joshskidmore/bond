@@ -1,25 +1,51 @@
 var EventEmitter = require('events').EventEmitter,
 	util = require('util');
 
-function ConversationsService(accounts) {
+function ConversationsService(accounts, contact) {
 	EventEmitter.call(this);
 
-	this.conversations = [{
-		jid: "0stnhj0jmj3tq1ev7jcu6i11fu@public.talk.google.com",
-		messages: []
-	}];
+	this.contactService = contact;
+
+	this.conversations = [];
 
 	accounts.on('chat', this.handleChatEvent.bind(this));
-
-	accounts.on('stanza', function(event) {
-		if (event.data.name === 'message')
-			console.log('stanza', event);
-	})
 }
 util.inherits(ConversationsService, EventEmitter);
 
 ConversationsService.prototype.handleChatEvent = function(event) {
-	console.log('CHAT!', event);
+	var conversation = this.getConversation(event.data.jid, event.accountJid);
+
+	// todo: this probably means we didn't recognize the jid. What do we do here?
+	if (!conversation) return;
+
+	conversation.messages.push(event.data.message);
+
+	this.emit('chat');
+};
+
+ConversationsService.prototype.getConversation = function(fromJid, toJid) {
+	for (var i = 0, len = this.conversations.length; i < len; i++) {
+		var conversation = this.conversations[i];
+
+		if (conversation.from.jid === fromJid && conversation.accountJid === toJid) {
+			return conversation;
+		}
+	}
+
+	var contact = this.contactService.getContact(fromJid);
+
+	if (!contact) {
+		return console.log('Received message from unknown jid: ', fromJid);
+	}
+
+	var newConversation = {
+		accountJid: toJid,
+		from: contact,
+		messages: []
+	};
+
+	this.conversations.push(newConversation);
+	return newConversation;
 };
 
 bond.service('conversations', ConversationsService);
