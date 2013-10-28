@@ -6,7 +6,7 @@
 	.buddy {
 		display: block;
 		color: #eee;
-		border-left: 4px solid #444;
+		border-left: 4px solid @buddy-color-offline;
 		font-size: 13px;
 		font-weight: 200;
 		letter-spacing: .1em;
@@ -19,11 +19,11 @@
 		
 
 		&.buddy-state-online {
-			border-color: #47db47;
+			border-color: @buddy-color-online;
 		}
 
 		&.buddy-state-away {
-			border-color: #d8b134;
+			border-color: @buddy-color-away;
 		}
 
 		&:hover {
