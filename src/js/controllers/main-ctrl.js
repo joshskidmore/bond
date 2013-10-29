@@ -1,6 +1,9 @@
 function MainCtrl($scope) {
 	var nwWindow = require('nw.gui').Window.get();
 
+	$scope.contactsBarExpanded = true;
+	$scope.settingsBarExpanded = false;
+
 	$scope.toggleContacts = function() {
 		$scope.contactsBarExpanded = !$scope.contactsBarExpanded;
 	};
