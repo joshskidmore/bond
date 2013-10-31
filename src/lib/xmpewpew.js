@@ -66,6 +66,16 @@ XMPewPew.prototype.connect = function() {
 };
 
 /**
+ * Sends the provided message to the user with the provided jid.
+ */
+XMPewPew.prototype.sendMessage = function(jid, message) {
+	var self = this;
+	this.whenReady(function() {
+		self.conn.send(self.createMessageElement(jid, message));
+	});
+};
+
+/**
  * Causes a roster request to be initiated.  Once the roster is returned, a
  * 'roster' event will be emitted.  If a roster request is already pending, then
  * no new request will be created.
@@ -205,6 +215,15 @@ XMPewPew.prototype.processQueuedCommands = function() {
 //
 // XML generation methods
 //
+
+/**
+ * Creates a message using the provided jid and message.
+ */
+XMPewPew.prototype.createMessageElement = function(jid, message) {
+	var stanza = new xmpp.Element('message', { to: jid, type: 'chat' });
+	stanza.c('body').t(message);
+	return stanza;
+};
 
 /**
  * Creates a presence element.
