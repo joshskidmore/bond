@@ -43,8 +43,10 @@ ConversationsService.prototype.getConversation = function(fromJid, toJid) {
 		from: contact,
 		messages: []
 	};
-
 	this.conversations.push(newConversation);
+
+	this.emit('conversation', newConversation);
+
 	return newConversation;
 };
 
