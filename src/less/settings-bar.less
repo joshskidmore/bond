@@ -1,5 +1,5 @@
 #settings-bar {
-	right:-@settings-bar-width;
+	right: -@settings-bar-width;
 	width: @settings-bar-width;
 	.transition(width 0.3s ease, right 0.3s ease;);
 
@@ -71,6 +71,7 @@
 }
 
 body.settings-bar-expanded {
+	right: @settings-bar-width;
 	#settings-bar {
 		right: 0;
 	}
