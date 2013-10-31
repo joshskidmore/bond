@@ -1,0 +1,93 @@
+#conversations {
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+
+	.conversation {
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 32px;
+	}
+
+	@textarea-height: 32px;
+
+	.messages {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: @textarea-height;
+		max-height: calc(~"100% - "@textarea-height);
+		overflow-y: scroll;
+
+		.message {
+			vertical-align: bottom;
+			display: inline-block;
+			width: 100%;
+		}
+	}
+
+	textarea.compose {
+		height: @textarea-height;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		resize: none;
+		border: none;
+		outline: none;
+		background-color: #111;
+		color: #eee;
+		font-weight: lighter;
+		border-top: 1px solid #222;
+		padding: 5px 6px;
+	}
+
+	#tabs {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		height: 32px;
+		background-color: #1f1f1f;
+		border: 1px solid #141414;
+		border-width: 0 1px 0 1px;
+		margin: 0;
+		padding: 0;
+
+		li {
+			display: inline-block;
+			background-color: #1a1a1a;
+			line-height: 30px;
+			padding: 0 10px;
+			cursor: pointer;
+			margin-right: 2px;
+			border-bottom: 2px solid @buddy-color-offline;
+			font-weight: lighter;
+			letter-spacing: 1px;
+			color: #eee;
+			opacity: .4;
+
+			&:hover {
+				background-color: #303030;
+				opacity: .7;
+			}
+
+			&.active {
+				opacity: 1;
+				background-color: #131313;
+			}
+
+			&.buddy-state-online {
+				border-color: @buddy-color-online;
+			}
+
+			&.buddy-state-away {
+				border-color: @buddy-color-away;
+			}
+
+		}
+	}
+}

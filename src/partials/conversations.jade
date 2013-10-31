@@ -1,0 +1,15 @@
+#conversations(ng-controller='ConversationsCtrl')
+	div.conversation(ng-show='conversation.isActive', ng-repeat='conversation in conversations')
+		div.messages(sticky-bottom)
+			- for (var i = 1; i <= 20; i++)
+				div.message foo
+			div.message(ng-repeat='message in conversation.messages track by $index') {{ message }}
+		textarea.compose(fauxcus='conversation.isActive')
+
+	ul#tabs.list-unstyled
+		li.buddy-state-offline Test 1
+		li.buddy-state-offline Test 2
+		li(ng-class='{"buddy-state-{{conversation.from.state}}": true, active: conversation.isActive}',
+			ng-click='setActiveConversation(conversation)',
+			ng-repeat='conversation in conversations')
+			| {{ conversation.from.name }}
