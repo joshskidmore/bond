@@ -20,4 +20,15 @@ function AccountService(accountSettings) {
 }
 util.inherits(AccountService, EventEmitter);
 
+AccountService.prototype.getAccount = function(accountJid) {
+	var accounts = this.accounts;
+	for (var i = 0, len = accounts.length; i < len; i++) {
+		var account = accounts[i];
+		if (account.jid === accountJid) {
+			return account;
+		}
+	}
+	return null;
+};
+
 bond.service('accounts', AccountService);

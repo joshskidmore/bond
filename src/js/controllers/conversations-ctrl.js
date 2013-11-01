@@ -23,4 +23,10 @@ function ConversationsCtrl($scope, conversations) {
 
 		$scope.$apply();
 	});
+
+	conversations.on('request-focus-conversation', function(conversation) {
+		console.log("REQUEST FOCUS", conversation);
+		$scope.setActiveConversation(conversation);
+		$scope.$apply();
+	});
 }

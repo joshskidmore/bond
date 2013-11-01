@@ -1,5 +1,11 @@
-function ContactsCtrl($scope, contact) {
+function ContactsCtrl($scope, contact, conversations) {
 	$scope.groups = contact.groups;
+
+	// note - this is an actual contact, not the contact service
+	// (need a better naming convention...)
+	$scope.startConversation = function(contact) {
+		conversations.startConversation(contact);
+	};
 
 	contact.on('roster-change', $scope.$apply.bind($scope));
 	

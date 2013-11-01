@@ -77,4 +77,8 @@ Account.prototype.connect = function() {
 	this.xmpp.connect(this.getConnectionOptions());
 };
 
+Account.prototype.sendMessage = function(jid, message) {
+	this.xmpp.sendMessage(jid, message);
+};
+
 module.exports = Account;

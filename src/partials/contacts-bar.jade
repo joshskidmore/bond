@@ -4,5 +4,5 @@
 	.panel.panel-default(ng-repeat='group in groups')
 		.panel-heading: h3.panel-title {{ group.name || 'Contacts' }}
 		.panel-body
-			a.buddy(href='', ng-class='"buddy-state-"+contact.state', ng-repeat='contact in group.contacts | orderBy:stateAndNameSortValue')
+			a.buddy(href='', ng-class='"buddy-state-"+contact.state', ng-click='startConversation(contact)', ng-repeat='contact in group.contacts | orderBy:stateAndNameSortValue')
 				| {{ contact.name }}
