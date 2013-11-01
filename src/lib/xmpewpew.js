@@ -144,7 +144,8 @@ XMPewPew.prototype.handleChatStanza = function(stanza) {
 
 	if (!body) return;
 
-	console.log('chat message', body.getText());
+	// console.log('CHAT MESSAGE', fromParts[0], fromParts[1], body.getText());
+
 	this.emit('chat', {
 		jid: fromParts[0],
 		clientId: fromParts[1],
@@ -156,12 +157,14 @@ XMPewPew.prototype.handleChatStanza = function(stanza) {
  * Handles incoming roster stanza
  */
 XMPewPew.prototype.handleRosterStanza = function(stanza) {
+	var self = this;
 	var roster = stanza.getChild('query').children.map(function(item) {
 		var jid = item.attrs.jid,
 			groupTag = item.getChild('group');
 
 		return {
 			jid: jid,
+			accountJid: self.jid,
 			name: item.attrs.name || jid,
 			subscription: item.attrs.subscription,
 			group: groupTag ? groupTag.children[0] : null
